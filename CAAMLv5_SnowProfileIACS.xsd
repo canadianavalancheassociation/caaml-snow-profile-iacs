@@ -434,7 +434,7 @@
 						</complexType>
 					</element>
 				</sequence>
-				<element name="Layer">
+				<element name="Layer" maxOccurs="unbounded">
 					<complexType>
 						<complexContent>
 							<extension base="caaml:LayerInProfileBaseType">
