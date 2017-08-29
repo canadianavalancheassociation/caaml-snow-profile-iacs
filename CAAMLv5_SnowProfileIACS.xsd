@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Pascal Haegeli (Avisualanche Consulting) -->
-<schema xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
+<schema xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.2">
 	<import namespace="http://www.opengis.net/gml" schemaLocation="CAAMLv5_SnowProfileIACS_GML.xsd"/>
 	<!--**********************************************************-->
 	<!--***        MAIN SNOWPROFILE ELEMENTS         ***-->
@@ -1431,7 +1431,7 @@
 	<complexType name="MeasureForceType" final="#all">
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
-				<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="cm"/>
+				<attribute name="uom" type="caaml:UomForceType" use="required" fixed="N"/>
 			</extension>
 		</simpleContent>
 	</complexType>
