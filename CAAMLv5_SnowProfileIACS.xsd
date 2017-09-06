@@ -15,6 +15,7 @@
 	<element name="SnowProfile" type="caaml:SnowProfileType"/>
 	<complexType name="SnowProfileType" final="#all">
 		<sequence>
+			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
 			<element name="timeRef" type="caaml:TimeRefType"/>
 			<element name="srcRef" type="caaml:SourceRefType"/>
 			<element name="locRef" type="caaml:LocRefType"/>
@@ -27,12 +28,13 @@
 			</element>
 			<element name="application" type="string" minOccurs="0"/>
 			<element name="applicationVersion" type="string" minOccurs="0"/>
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
 	</complexType>
 	<complexType name="SnowProfileMeasurementsType">
 		<sequence>
+			<!-- META DATA -->
+			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
 			<element name="profileDepth" type="caaml:MeasureLengthCmType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for depth of snow profile</documentation>
@@ -91,8 +93,6 @@
 					<documentation>Property element for series of stability test results</documentation>
 				</annotation>
 			</element>
-			<!-- META DATA -->
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
 		</sequence>
 		<attribute name="dir" type="caaml:DirectionType" use="required" default="top down"/>
 	</complexType>
@@ -104,14 +104,14 @@
 
 	<complexType name="TimeRefType" final="#all">
 		<sequence>
-			<element name="recordTime" type="caaml:ValidTimeType"/>
-			<element name="dateTimeReport" type="gml:TimePositionType" minOccurs="0"/>
-			<element name="dateTimeLastEdit" type="gml:TimePositionType" minOccurs="0"/>
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for description of time</documentation>
 				</annotation>
 			</element>
+			<element name="recordTime" type="caaml:ValidTimeType"/>
+			<element name="dateTimeReport" type="gml:TimePositionType" minOccurs="0"/>
+			<element name="dateTimeLastEdit" type="gml:TimePositionType" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<complexType name="ValidTimeType" final="#all">
@@ -147,12 +147,12 @@
 	</complexType>
 	<complexType name="SourceType">
 		<sequence>
-			<element name="name" type="string"/>
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for description of source</documentation>
 				</annotation>
 			</element>
+			<element name="name" type="string"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
 	</complexType>
@@ -190,6 +190,11 @@
 
 	<complexType name="LocRefType">
 		<sequence>
+			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for description of location</documentation>
+				</annotation>
+			</element>
 			<element name="name" type="string">
 				<annotation>
 					<documentation>Required property element for name of location</documentation>
@@ -212,11 +217,6 @@
 						<element ref="gml:Point"/>
 					</sequence>
 				</complexType>
-			</element>
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
-				<annotation>
-					<documentation>Property element for description of location</documentation>
-				</annotation>
 			</element>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
@@ -304,6 +304,11 @@
 	<!-- WEATHER -->
 	<complexType name="WeatherCondType" final="#all">
 		<sequence>
+			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for description of weather conditions</documentation>
+				</annotation>
+			</element>
 			<element name="skyCond" type="caaml:SkyCondType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for sky condition (METAR)</documentation>
@@ -327,11 +332,6 @@
 			<element name="windDir" type="caaml:ValidAspectType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for wind direction</documentation>
-				</annotation>
-			</element>
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
-				<annotation>
-					<documentation>Property element for description of weather conditions</documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -406,6 +406,11 @@
 	<!-- SNOW SURFACE -->
 	<complexType name="SurfCondType" final="#all">
 		<sequence>
+			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for description of snow surface</documentation>
+				</annotation>
+			</element>
 			<element name="surfFeatures" type="caaml:SurfFeatureType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for snow surface feature</documentation>
@@ -424,11 +429,6 @@
 			<element name="penetrationSki" type="caaml:MeasureLengthCmType" minOccurs="0">
 				<annotation>
 					<documentation>Propert element for penetration depth of a person standing on one ski</documentation>
-				</annotation>
-			</element>
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
-				<annotation>
-					<documentation>Property element for description of snow surface</documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -512,6 +512,11 @@
 	<!-- SNOW PACK -->
 	<complexType name="SnowPackCondType" final="#all">
 		<sequence>
+			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for description of snow pack</documentation>
+				</annotation>
+			</element>
 			<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for height of snowpack or snow depth and snow water equivalent</documentation>
@@ -525,11 +530,6 @@
 			<element name="hIN" type="caaml:SnowHeightPointIrregularType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for irregular intervall height of new snow and snow water equivalent - NEED TO ADD TO CAAML</documentation>
-				</annotation>
-			</element>
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
-				<annotation>
-					<documentation>Property element for description of snow pack</documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -546,12 +546,12 @@
 			<element name="Components">
 				<complexType>
 					<sequence>
-						<element name="snowHeight" type="caaml:MeasureLengthCmType" minOccurs="0">
+						<element name="height" type="caaml:MeasureLengthCmType" minOccurs="0">
 							<annotation>
 								<documentation>Height of snow</documentation>
 							</annotation>
 						</element>
-						<element name="swe" type="caaml:MeasureMassUnitAreaType" minOccurs="0">
+						<element name="waterEquivalent" type="caaml:MeasureMassUnitAreaType" minOccurs="0">
 							<annotation>
 								<documentation>Snow water equivalent</documentation>
 							</annotation>
@@ -570,6 +570,14 @@
 	<!-- EMBEDDED LAYER PROFILE -->
 	<complexType name="StratProfileType" final="#all">
 		<sequence>
+			<element name="stratMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
 			<element name="Layer" maxOccurs="unbounded">
 				<complexType>
 					<complexContent>
@@ -590,7 +598,12 @@
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="stratMetaData">
+		</sequence>
+	</complexType>
+	<!-- EMBEDDED TEMPERATURE PROFILE -->
+	<complexType name="TempProfileType" final="#all">
+		<sequence>
+			<element name="tempMetaData">
 				<complexType>
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
@@ -598,11 +611,6 @@
 					</complexContent>
 				</complexType>
 			</element>
-		</sequence>
-	</complexType>
-	<!-- EMBEDDED TEMPERATURE PROFILE -->
-	<complexType name="TempProfileType" final="#all">
-		<sequence>
 			<element name="Obs" maxOccurs="unbounded">
 				<complexType>
 					<complexContent>
@@ -619,31 +627,11 @@
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="tempMetaData">
-				<complexType>
-					<complexContent>
-						<extension base="caaml:MetaDataBaseType">
-						</extension>
-					</complexContent>
-				</complexType>
-			</element>
 		</sequence>
 	</complexType>
 	<!-- EMBEDDED DENSITY PROFILES -->
 	<complexType name="DensityProfileType" final="#all">
 		<sequence>
-			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
-			<element name="Layer" maxOccurs="unbounded">
-				<complexType>
-					<complexContent>
-						<extension base="caaml:LayerInProfileBaseType">
-							<sequence>
-								<element name="density" type="caaml:MeasureDensityType"/>
-							</sequence>
-						</extension>
-					</complexContent>
-				</complexType>
-			</element>
 			<element name="densityMetaData">
 				<complexType>
 					<complexContent>
@@ -684,6 +672,18 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<sequence>
+								<element name="density" type="caaml:MeasureDensityType"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
 		</sequence>
 	</complexType>
 	<simpleType name="DensityMethodOfMeasType">
@@ -700,18 +700,6 @@
 	<!-- EMBEDDED LWC PROFILES -->
 	<complexType name="LwcProfileType" final="#all">
 		<sequence>
-			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
-			<element name="Layer" maxOccurs="unbounded">
-				<complexType>
-					<complexContent>
-						<extension base="caaml:LayerInProfileBaseType">
-							<sequence>
-								<element name="lwc" type="caaml:MeasureLwcType"/>
-							</sequence>
-						</extension>
-					</complexContent>
-				</complexType>
-			</element>
 			<element name="lwcMetaData">
 				<complexType>
 					<complexContent>
@@ -737,6 +725,18 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<sequence>
+								<element name="lwc" type="caaml:MeasureLwcType"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
 		</sequence>
 	</complexType>
 	<simpleType name="LwcMethodOfMeasType">
@@ -751,6 +751,31 @@
 	<!-- EMBEDDED SPEC SURFACE AREA PROFILES -->
 	<complexType name="SpecSurfAreaProfileType" final="#all">
 		<sequence>
+			<element name="specSurfAreaMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="methodOfMeas" type="caaml:SpecSurfAreaMethodOfMeasType">
+									<annotation>
+										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
+									</annotation>
+								</element>
+								<element name="uncertaintyOfMeas" type="caaml:MeasureSpecSurfAreaType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
+									<annotation>
+										<documentation>Thickness of layer probed in cm</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
 			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
 			<choice>
 				<sequence>
@@ -784,31 +809,6 @@
 					</complexType>
 				</element>
 			</choice>
-			<element name="specSurfAreaMetaData">
-				<complexType>
-					<complexContent>
-						<extension base="caaml:MetaDataBaseType">
-							<sequence>
-								<element name="methodOfMeas" type="caaml:SpecSurfAreaMethodOfMeasType">
-									<annotation>
-										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
-									</annotation>
-								</element>
-								<element name="uncertaintyOfMeas" type="caaml:MeasureSpecSurfAreaType" minOccurs="0">
-									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
-									</annotation>
-								</element>
-								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
-									<annotation>
-										<documentation>Thickness of layer probed in cm</documentation>
-									</annotation>
-								</element>
-							</sequence>
-						</extension>
-					</complexContent>
-				</complexType>
-			</element>
 		</sequence>
 	</complexType>
 	<simpleType name="SpecSurfAreaMethodOfMeasType">
@@ -822,6 +822,31 @@
 	<!-- EMBEDDED HARDNESS PROFILE -->
 	<complexType name="HardnessProfileType" final="#all">
 		<sequence>
+			<element name="hardnessMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="methodOfMeas" type="caaml:HardnessMethodOfMeasType">
+									<annotation>
+										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
+									</annotation>
+								</element>
+								<element name="uncertaintyOfMeas" type="caaml:MeasureForceType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+								<element name="surfOfIndentation" type="caaml:MeasureAreaType" minOccurs="0">
+									<annotation>
+										<documentation>Surface of indentation in m2</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
 			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
 			<choice>
 				<sequence>
@@ -859,31 +884,6 @@
 					</complexType>
 				</element>
 			</choice>
-			<element name="hardnessMetaData">
-				<complexType>
-					<complexContent>
-						<extension base="caaml:MetaDataBaseType">
-							<sequence>
-								<element name="methodOfMeas" type="caaml:HardnessMethodOfMeasType">
-									<annotation>
-										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
-									</annotation>
-								</element>
-								<element name="uncertaintyOfMeas" type="caaml:MeasureForceType" minOccurs="0">
-									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
-									</annotation>
-								</element>
-								<element name="surfOfIndentation" type="caaml:MeasureAreaType" minOccurs="0">
-									<annotation>
-										<documentation>Surface of indentation in m2</documentation>
-									</annotation>
-								</element>
-							</sequence>
-						</extension>
-					</complexContent>
-				</complexType>
-			</element>
 		</sequence>
 		<attribute name="uomWeightHammer" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomWeightTube" type="caaml:UomWeightType" use="optional" fixed="kg"/>
@@ -902,19 +902,6 @@
 	<!-- EMBEDDED STRENGHT PROFILES -->
 	<complexType name="StrengthProfileType" final="#all">
 		<sequence>
-			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
-			<element name="Layer" maxOccurs="unbounded">
-				<complexType>
-					<complexContent>
-						<extension base="caaml:LayerInProfileBaseType">
-							<sequence>
-								<element name="strengthValue" type="caaml:MeasurePressureType"/>
-								<element name="fractureCharacter" type="caaml:FractureCharacterType" minOccurs="0"/>
-							</sequence>
-						</extension>
-					</complexContent>
-				</complexType>
-			</element>
 			<element name="strengthMetaData">
 				<complexType>
 					<complexContent>
@@ -945,6 +932,19 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<sequence>
+								<element name="strengthValue" type="caaml:MeasurePressureType"/>
+								<element name="fractureCharacter" type="caaml:FractureCharacterType" minOccurs="0"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
 		</sequence>
 	</complexType>
 	<simpleType name="StrengthMethodOfMeasType">
@@ -965,19 +965,6 @@
 	<!-- EMBEDDED IMPURITY PROFILES -->
 	<complexType name="ImpurityProfileType" final="#all">
 		<sequence>
-			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
-			<element name="Layer" maxOccurs="unbounded">
-				<complexType>
-					<complexContent>
-						<extension base="caaml:LayerInProfileBaseType">
-							<choice>
-								<element name="massFraction" type="caaml:NonNegMeasureType"/>
-								<element name="volumeFraction" type="caaml:NonNegMeasureType"/>
-							</choice>
-						</extension>
-					</complexContent>
-				</complexType>
-			</element>
 			<element name="impurityMetaData">
 				<complexType>
 					<complexContent>
@@ -1004,6 +991,19 @@
 									</annotation>
 								</element>
 							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<choice>
+								<element name="massFraction" type="caaml:NonNegMeasureType"/>
+								<element name="volumeFraction" type="caaml:NonNegMeasureType"/>
+							</choice>
 						</extension>
 					</complexContent>
 				</complexType>
@@ -1045,18 +1045,9 @@
 	</complexType>
 	<complexType name="AbstractStbTestType" abstract="true">
 		<sequence>
-			<element name="stbTestNr" type="caaml:TestNrType"/>
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
 		</sequence>
 	</complexType>
-	<simpleType name="TestNrType">
-		<annotation>
-			<documentation>To encode order of tests, the digit is # of test</documentation>
-		</annotation>
-		<restriction base="string">
-			<pattern value="(ct|ect|rb|pst|sf)[1-9]"/>
-		</restriction>
-	</simpleType>
 	<!-- RUTSCH BLOCK TEST-->
 	<element name="RBlockTest" type="caaml:RBlockTestType" substitutionGroup="caaml:AbstractStbTest">
 		<annotation>
@@ -1570,7 +1561,7 @@
 
 	<complexType name="MetaDataBaseType">
 		<sequence>
-			<element ref="caaml:comment" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="caaml:comment" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
