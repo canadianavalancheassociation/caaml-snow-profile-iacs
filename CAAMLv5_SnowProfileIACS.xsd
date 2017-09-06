@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited by Charles Fierz with Atom 1.18.0 x64, 2017-07 -->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.1.0"
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0"
 	xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS"
 	xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS"
-	xmlns:slf="http://www.slf.ch/snowprofile/1.0">
-	<!-- xmnls:slf="http://models.slf.ch/p/snowpack/source/tree/HEAD/branches/dev/applications/profeval"> -->
+	xmnls:slf="http://www.slf.ch/snowprofile/1.0">
 	<!-- <import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS/CAAMLv5_SnowProfileIACS_GML.xsd"/> -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/caaml-v3.2.1_SnowProfileIACS_GML.xsd"/>
-	<import namespace="http://www.slf.ch/snowprofile/1.0" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/slfml-v1.0_snowhizz.xsd"/>
+	<import namespace="http://www.slf.ch/snowprofile/1.0" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/slfml-v1.1_snowhizz.xsd"/>
 	<!--**********************************************************-->
 	<!--***        MAIN SNOWPROFILE ELEMENTS                   ***-->
 	<!--**********************************************************-->
@@ -129,8 +128,8 @@
 	</complexType>
 	<complexType name="ObsMeasurementsType" abstract="true">
 		<sequence>
-			<element ref="caaml:customData" minOccurs="0"/>
 			<element ref="caaml:comment" minOccurs="0"/>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<!--**********************************************************-->
@@ -187,20 +186,28 @@
 		</sequence>
 	</complexType>
 	<!--***-->
-	<complexType name="LayerBaseType">
+	<complexType name="LayerInProfileBaseType">
 		<complexContent>
 			<extension base="caaml:LayerPointObsRootType">
 				<sequence>
 					<element name="depthTop" type="caaml:MeasureLengthCmType">
 						<annotation>
-							<documentation>Property element for depth of top of layer (with unit)</documentation>
+							<documentation>Property element for depth of top of layer</documentation>
 						</annotation>
 					</element>
 					<element name="thickness" type="caaml:MeasureLengthCmType" minOccurs="0">
 						<annotation>
-							<documentation>Property element for thickness of layer (with unit)</documentation>
+							<documentation>Property element for thickness of layer</documentation>
 						</annotation>
 					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="StratigraphicLayerBaseType">
+		<complexContent>
+			<extension base="caaml:LayerInProfileBaseType">
+				<sequence>
 					<group ref="caaml:grainGroup"/>
 					<element name="validFormationTime" type="caaml:ValidTimeType" minOccurs="0">
 						<annotation>
@@ -211,30 +218,20 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	<complexType name="LayerInProfileBaseType">
-		<complexContent>
-			<extension base="caaml:LayerPointObsRootType">
-				<sequence>
-					<element name="depthTop" type="caaml:NonNegDoubleOrNilReasonType">
-						<annotation>
-							<documentation>Property element for depth of top of layer</documentation>
-						</annotation>
-					</element>
-					<element name="thickness" type="caaml:NonNegDoubleOrNilReasonType">
-						<annotation>
-							<documentation>Property element for thickness of layer</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
+	<simpleType name="ProfileNrType">
+		<annotation>
+			<documentation>To encode order of profiles (optional)</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="[1-9]"/>
+		</restriction>
+	</simpleType>
 	<!--***-->
 	<complexType name="PointObsInProfileBaseType">
 		<complexContent>
 			<extension base="caaml:LayerPointObsRootType">
 				<sequence>
-					<element name="depth" type="caaml:NonNegDoubleOrNilReasonType">
+					<element name="depth" type="caaml:MeasureLengthCmType">
 						<annotation>
 							<documentation>Property element for depth of observation point</documentation>
 						</annotation>
@@ -285,15 +282,13 @@
 					<complexContent>
 						<extension base="caaml:PointObsInProfileBaseType">
 							<sequence>
-								<element name="snowTemp" type="caaml:TempOrNilReasonType"/>
+								<element name="snowTemp" type="caaml:SnowTempType"/>
 							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
 			</element>
 		</sequence>
-		<attribute name="uomDepth" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomTemp" type="caaml:UomTempType" use="required" fixed="degC"/>
 	</complexType>
 	<!--***-->
 	<!--***  EMBEDDED LAYER PROFILES   ***-->
@@ -307,7 +302,7 @@
 			<element name="Layer" maxOccurs="unbounded">
 				<complexType>
 					<complexContent>
-						<extension base="caaml:LayerBaseType">
+						<extension base="caaml:StratigraphicLayerBaseType">
 							<sequence>
 								<element name="hardness" type="caaml:HardnessType" minOccurs="0">
 									<annotation>
@@ -374,16 +369,14 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="density" type="caaml:NonNegDoubleOrNilReasonType"/>
+								<element name="density" type="caaml:MeasureDensityType"/>
 							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
 			</element>
 		</sequence>
-		<attribute name="uomDepthTop" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomThickness" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomDensity" type="caaml:UomDensityType" use="required"/>
+		<attribute name="densityPrfNr" type="caaml:ProfileNrType" use="optional"/>
 	</complexType>
 	<simpleType name="DensityMethodOfMeasType">
 		<union memberTypes="caaml:DensityMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -429,16 +422,14 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="lwc" type="caaml:PercentType"/>
+								<element name="lwc" type="caaml:MeasureLwcType"/>
 							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
 			</element>
 		</sequence>
-		<attribute name="uomDepthTop" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomThickness" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomLwc" type="caaml:UomLwcType" use="required" fixed="% by Vol"/>
+		<attribute name="lwcPrfNr" type="caaml:ProfileNrType" use="optional"/>
 	</complexType>
 	<simpleType name="LwcMethodOfMeasType">
 		<union memberTypes="caaml:LwcMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -472,7 +463,7 @@
 										<documentation>Method of measurement</documentation>
 									</annotation>
 								</element>
-								<element name="frameSize" type="caaml:MeasureAreaType" minOccurs="0">
+								<element name="probedArea" type="caaml:MeasureAreaType" minOccurs="0">
 									<annotation>
 										<documentation>Probed layer area in cm2</documentation>
 									</annotation>
@@ -492,7 +483,7 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="strength" type="caaml:NonNegDoubleOrNilReasonType"/>
+								<element name="strengthValue" type="caaml:MeasurePressureType"/>
 								<element name="fractureCharacter" type="caaml:FractureCharacterType" minOccurs="0"/>
 							</sequence>
 						</extension>
@@ -500,9 +491,7 @@
 				</complexType>
 			</element>
 		</sequence>
-		<attribute name="uomDepthTop" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomThickness" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomStrength" type="caaml:UomPressureType" use="required" fixed="Nm-2"/>
+		<attribute name="strengthPrfNr" type="caaml:ProfileNrType" use="optional"/>
 	</complexType>
 	<simpleType name="StrengthMethodOfMeasType">
 		<union memberTypes="caaml:StrengthMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -557,16 +546,17 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="massFraction" type="caaml:NonNegDoubleOrNilReasonType"/>
+								<choice>
+									<element name="massFraction" type="caaml:NonNegMeasureType"/>
+									<element name="volumeFraction" type="caaml:NonNegMeasureType"/>
+								</choice>
 							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
 			</element>
 		</sequence>
-		<attribute name="uomDepthTop" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomThickness" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomFraction" type="caaml:UomFractionType" use="required"/>
+		<attribute name="impurityPrfNr" type="caaml:ProfileNrType" use="optional"/>
 	</complexType>
 	<simpleType name="ImpurityMethodOfMeasType">
 		<union memberTypes="caaml:ImpurityMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -628,6 +618,8 @@
 								<element name="depth" type="caaml:NonNegDoubleOrNilReasonType" fixed="template"/>
 								<element name="specSurfArea" type="caaml:NonNegDoubleOrNilReasonType" fixed="template"/>
 							</sequence>
+							<attribute name="uomDepth" type="caaml:UomLengthType" use="required" fixed="cm"/>
+							<attribute name="uomSpecSurfArea" type="caaml:UomSpecSurfAreaType" use="required" fixed="m2kg-1"/>
 						</complexType>
 					</element>
 					<element name="Measurements">
@@ -643,7 +635,7 @@
 						<complexContent>
 							<extension base="caaml:LayerInProfileBaseType">
 								<sequence>
-									<element name="specSurfArea" type="caaml:NonNegDoubleOrNilReasonType"/>
+									<element name="specSurfArea" type="caaml:MeasureSpecSurfAreaType"/>
 								</sequence>
 							</extension>
 						</complexContent>
@@ -651,16 +643,13 @@
 				</element>
 			</choice>
 		</sequence>
-		<attribute name="uomDepthTop" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomThickness" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomSpecSurfArea" type="caaml:UomSpecSurfAreaType" use="required" fixed="m2kg-1"/>
 	</complexType>
 	<simpleType name="SpecSurfAreaMethodOfMeasType">
 		<union memberTypes="caaml:SpecSurfAreaMethodOfMeasEnumType gml:NilReasonEnumeration"/>
 	</simpleType>
 	<simpleType name="SpecSurfAreaMethodOfMeasEnumType">
 		<restriction base="string">
-			<enumeration value="Ice cube"/>
+			<enumeration value="Ice Cube"/>
 		</restriction>
 	</simpleType>
 	<!--***-->
@@ -699,6 +688,8 @@
 								<element name="depth" type="caaml:NonNegDoubleOrNilReasonType" fixed="template"/>
 								<element name="penRes" type="caaml:NonNegDoubleOrNilReasonType" fixed="template"/>
 							</sequence>
+							<attribute name="uomDepth" type="caaml:UomLengthType" use="required" fixed="cm"/>
+							<attribute name="uomHardness" type="caaml:UomForceType" use="required" fixed="N"/>
 						</complexType>
 					</element>
 					<element name="Measurements">
@@ -714,7 +705,7 @@
 						<complexContent>
 							<extension base="caaml:LayerInProfileBaseType">
 								<sequence>
-									<element name="hardness" type="caaml:NonNegDoubleOrNilReasonType"/>
+									<element name="hardness" type="caaml:MeasureForceType"/>
 									<element name="weightHammer" type="caaml:NonNegDoubleOrNilReasonType" minOccurs="0"/>
 									<element name="weightTube" type="caaml:NonNegDoubleOrNilReasonType" minOccurs="0"/>
 									<element name="nDrops" type="caaml:NonNegIntOrNilReasonType" minOccurs="0"/>
@@ -726,9 +717,7 @@
 				</element>
 			</choice>
 		</sequence>
-		<attribute name="uomDepthTop" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomThickness" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomHardness" type="caaml:UomForceType" use="required" fixed="N"/>
+		<attribute name="hardnessPrfNr" type="caaml:ProfileNrType" use="optional"/>
 		<attribute name="uomWeightHammer" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomWeightTube" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomDropHeight" type="caaml:UomLengthType" use="optional" fixed="cm"/>
@@ -766,7 +755,16 @@
 		<sequence>
 			<element ref="caaml:comment" minOccurs="0"/>
 		</sequence>
+		<attribute name="stbTestNr" type="caaml:TestNrType" use="required"/>
 	</complexType>
+	<simpleType name="TestNrType">
+		<annotation>
+			<documentation>To encode order of tests, first digit is # of test, second digit # of failure from top</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="(ct|ect|rb|pst|sf)[1-9]_[1-9]"/>
+		</restriction>
+	</simpleType>
 	<!--***-->
 	<element name="RBlockTest" type="caaml:RBlockTestType" substitutionGroup="caaml:AbstractStbTest">
 		<annotation>
@@ -785,7 +783,7 @@
 					<element name="failedOn">
 						<complexType>
 							<sequence>
-								<element name="Layer" type="caaml:LayerBaseType"/>
+								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
 								<element name="Results">
 									<complexType>
 										<sequence>
@@ -833,7 +831,7 @@
 					<element name="failedOn">
 						<complexType>
 							<sequence>
-								<element name="Layer" type="caaml:LayerBaseType"/>
+								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
 								<element name="Results">
 									<complexType>
 										<sequence>
@@ -898,7 +896,7 @@
 					<element name="failedOn">
 						<complexType>
 							<sequence>
-								<element name="Layer" type="caaml:LayerBaseType"/>
+								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
 								<element name="Results">
 									<complexType>
 										<sequence>
@@ -942,7 +940,7 @@
 					<element name="failedOn">
 						<complexType>
 							<sequence>
-								<element name="Layer" type="caaml:LayerBaseType"/>
+								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
 								<element name="Results">
 									<complexType>
 										<sequence>
@@ -972,7 +970,7 @@
 					<element name="failedOn">
 						<complexType>
 							<sequence>
-								<element name="Layer" type="caaml:LayerBaseType"/>
+								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
 								<element name="Results">
 									<complexType>
 										<sequence>
@@ -1543,23 +1541,6 @@
 		</restriction>
 	</simpleType>
 	<!--***-->
-	<complexType name="TempType" final="#all">
-		<simpleContent>
-			<extension base="caaml:TempOrNilReasonType">
-				<attribute name="uom" type="caaml:UomTempType" use="required" fixed="degC"/>
-			</extension>
-		</simpleContent>
-	</complexType>
-	<simpleType name="TempOrNilReasonType">
-		<union memberTypes="gml:NilReasonEnumeration caaml:TempBaseType anyURI"/>
-	</simpleType>
-	<simpleType name="TempBaseType">
-		<restriction base="double">
-			<minInclusive value="-110.0"/>
-			<maxInclusive value="60.0"/>
-		</restriction>
-	</simpleType>
-	<!--***-->
 	<complexType name="SnowHeightPointIrregularType" final="#all">
 		<complexContent>
 			<extension base="caaml:SnowHeightPointRegularType">
@@ -1648,11 +1629,50 @@
 			<maxInclusive value="100"/>
 		</restriction>
 	</simpleType>
-	<simpleType name="PercentType">
-		<restriction base="double">
-			<minInclusive value="0.0"/>
-			<maxInclusive value="100.0"/>
-		</restriction>
+	<simpleType name="PercentOrNilReasonType">
+		<union memberTypes="gml:NilReasonEnumeration">
+			<simpleType>
+				<restriction base="double">
+					<minInclusive value="0.0"/>
+					<maxInclusive value="100.0"/>
+				</restriction>
+			</simpleType>
+		</union>
+	</simpleType>
+	<!--***-->
+	<complexType name="TempType" final="#all">
+		<simpleContent>
+			<extension base="caaml:TempOrNilReasonType">
+				<attribute name="uom" type="caaml:UomTempType" use="required" fixed="degC"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="SnowTempType" final="#all">
+		<simpleContent>
+			<extension base="caaml:SnowTempOrNilReasonType">
+				<attribute name="uom" type="caaml:UomTempType" use="required" fixed="degC"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="TempOrNilReasonType">
+		<union memberTypes="gml:NilReasonEnumeration">
+			<simpleType>
+				<restriction base="double">
+					<minInclusive value="-110.0"/>
+					<maxInclusive value="60.0"/>
+				</restriction>
+			</simpleType>
+		</union>
+	</simpleType>
+	<simpleType name="SnowTempOrNilReasonType">
+		<union memberTypes="gml:NilReasonEnumeration">
+			<simpleType>
+				<restriction base="double">
+					<minInclusive value="-110.0"/>
+					<maxInclusive value="0.0"/>
+				</restriction>
+			</simpleType>
+		</union>
 	</simpleType>
 	<!--***-->
 	<complexType name="MeasureLengthCmType" final="#all">
@@ -1693,7 +1713,7 @@
 	<complexType name="MeasureSpecSurfAreaType" final="#all">
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
-				<attribute name="uom" type="caaml:UomSpecSurfAreaType" use="required" fixed="m2kg-1"/>
+				<attribute name="uom" type="caaml:UomSpecSurfAreaType" use="required"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -1701,6 +1721,13 @@
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
 				<attribute name="uom" type="caaml:UomDensityType" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="MeasureLwcType" final="#all">
+		<simpleContent>
+			<extension base="caaml:PercentOrNilReasonType">
+				<attribute name="uom" type="caaml:UomLwcType" use="required"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -1715,20 +1742,6 @@
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
 				<attribute name="uom" type="caaml:UomPressureType" use="required" fixed="Nm-2"/>
-			</extension>
-		</simpleContent>
-	</complexType>
-	<complexType name="MeasureUnitType" final="#all">
-		<simpleContent>
-			<extension base="caaml:NonNegDoubleOrNilReasonType">
-				<attribute name="uom" type="caaml:UomUnitType" use="required" fixed="1"/>
-			</extension>
-		</simpleContent>
-	</complexType>
-	<complexType name="MeasureWeightType" final="#all">
-		<simpleContent>
-			<extension base="caaml:NonNegDoubleOrNilReasonType">
-				<attribute name="uom" type="caaml:UomWeightType" use="required" fixed="kg"/>
 			</extension>
 		</simpleContent>
 	</complexType>
