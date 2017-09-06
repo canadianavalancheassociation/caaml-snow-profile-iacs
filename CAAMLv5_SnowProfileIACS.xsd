@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Pascal Haegeli (Avisualanche Consulting) -->
-<schema xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.5">
-	<import namespace="http://www.opengis.net/gml" schemaLocation="CAAMLv5_SnowProfileIACS_GML.xsd"/>
+<!-- edited by Charles Fierz with Atom 1.18.0 x64, 2017-07 -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.6"
+	xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS"
+	xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS"
+	xmnls:slf="http://www.slf.ch/snowprofile/1.0">
+	<!-- xmnls:slf="http://models.slf.ch/p/snowpack/source/tree/HEAD/branches/dev/applications/profeval"> -->
+	<!-- <import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS/CAAMLv5_SnowProfileIACS_GML.xsd"/> -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/caaml-v3.2.0_SnowProfileIACS_GML.xsd"/>
+	<!-- <import namespace="http://www.slf.ch/snowprofile/1.0" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/slfml_snowprofiler.xsd"/> -->
+	<import namespace="http://www.slf.ch/snowprofile/1.0" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/slfml-v1.0_snowprofiler.xsd"/>
 	<!--**********************************************************-->
-	<!--***        MAIN SNOWPROFILE ELEMENTS         ***-->
+	<!--***        MAIN SNOWPROFILE ELEMENTS                   ***-->
 	<!--**********************************************************-->
 	<complexType name="ObsMetaDataType">
 		<sequence>
@@ -74,7 +81,7 @@
 					</element>
 					<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0">
 						<annotation>
-							<documentation>Property element for height of snowpack, snow depth  and snow water equivalent</documentation>
+							<documentation>Property element for height of snowpack or snow depth and snow water equivalent</documentation>
 						</annotation>
 					</element>
 					<element name="hN24" type="caaml:SnowHeightPointRegularType" minOccurs="0">
@@ -126,7 +133,7 @@
 		</sequence>
 	</complexType>
 	<!--**********************************************************-->
-	<!--***        SOURCE REFERENCE ELEMENTS         ***-->
+	<!--***        SOURCE REFERENCE ELEMENTS                   ***-->
 	<!--**********************************************************-->
 	<complexType name="SourceRefType">
 		<choice>
@@ -134,6 +141,7 @@
 			<element ref="caaml:Person"/>
 		</choice>
 	</complexType>
+	<!--***-->
 	<complexType name="SourceType">
 		<sequence>
 			<element ref="caaml:customData" minOccurs="0"/>
@@ -169,9 +177,9 @@
 			<extension base="caaml:SourceType"/>
 		</complexContent>
 	</complexType>
-	<!--******************************************************************************-->
-	<!--***            LAYER AND POINT OBS TYPE DEFINITIONS               ***-->
-	<!--******************************************************************************-->
+	<!--**********************************************************-->
+	<!--***    LAYER AND POINT OBS TYPE DEFINITIONS            ***-->
+	<!--**********************************************************-->
 	<complexType name="LayerPointObsMetaDataType" final="#all">
 		<sequence>
 			<element ref="caaml:customData" minOccurs="0"/>
@@ -253,7 +261,7 @@
 		<attribute ref="gml:id" use="optional"/>
 	</complexType>
 	<!--**********************************************************-->
-	<!--***                  EMBEDDED PROFILES                ***-->
+	<!--***                  EMBEDDED PROFILES                 ***-->
 	<!--**********************************************************-->
 	<complexType name="ProfileMetaDataBaseType">
 		<sequence>
@@ -360,7 +368,7 @@
 		</sequence>
 		<attribute name="uomDepthTop" type="caaml:UomLengthType" use="required" fixed="cm"/>
 		<attribute name="uomThickness" type="caaml:UomLengthType" use="required" fixed="cm"/>
-		<attribute name="uomLwc" type="caaml:UomLwcType" use="required"/>
+		<attribute name="uomLwc" type="caaml:UomLwcType" use="required" fixed="% by Vol"/>
 	</complexType>
 	<!--***-->
 	<!--***  EMBEDDED POINT PROFILES   ***-->
@@ -530,7 +538,7 @@
 		</restriction>
 	</simpleType>
 	<!--**********************************************************-->
-	<!--***                  STABILITY TESTS                      ***-->
+	<!--***                  STABILITY TESTS                   ***-->
 	<!--**********************************************************-->
 	<element name="stbTests" type="caaml:StbTestsType">
 		<annotation>
@@ -797,7 +805,7 @@
 	</complexType>
 	<!--***-->
 	<!--**********************************************************-->
-	<!--***           LOCATION INFORMATION                 ***-->
+	<!--***           LOCATION INFORMATION                     ***-->
 	<!--**********************************************************-->
 	<element name="locRef" type="caaml:LocRefType"/>
 	<complexType name="LocRefType">
@@ -826,7 +834,7 @@
 			</element>
 			<element name="name" type="string">
 				<annotation>
-					<documentation>Property element for name of location</documentation>
+					<documentation>Required property element for name of location</documentation>
 				</annotation>
 			</element>
 			<element name="obsPointSubType" type="string">
@@ -947,7 +955,7 @@
 	</simpleType>
 	<!--***-->
 	<!--**********************************************************-->
-	<!--***                     TIME ELEMENTS                      ***-->
+	<!--***                 TIME ELEMENTS                      ***-->
 	<!--**********************************************************-->
 	<element name="validTime" type="caaml:ValidTimeType"/>
 	<!--***-->
@@ -975,7 +983,7 @@
 		<attribute ref="gml:id" use="optional"/>
 	</complexType>
 	<!--**********************************************************-->
-	<!--***   DEFINTIION OF PROPERTY ELEMENTS     ***-->
+	<!--***      DEFINTIION OF PROPERTY ELEMENTS               ***-->
 	<!--**********************************************************-->
 	<simpleType name="FractureCharacterType" final="#all">
 		<union memberTypes="gml:NilReasonEnumeration caaml:FractureCharacterBaseCndType caaml:FractureCharacterBaseSwissType caaml:FractureCharacterBaseUsaType"/>
@@ -1131,7 +1139,7 @@
 		</simpleContent>
 	</complexType>
 	<simpleType name="LwcBaseType">
-		<union memberTypes="gml:NilReasonEnumeration caaml:LwcBaseEnumType caaml:PercentIntType"/>
+		<union memberTypes="gml:NilReasonEnumeration caaml:LwcBaseEnumType caaml:PercentType"/>
 	</simpleType>
 	<simpleType name="LwcBaseEnumType">
 		<restriction base="string">
@@ -1449,7 +1457,7 @@
 		</sequence>
 	</complexType>
 	<!--**********************************************************-->
-	<!--***     MEASUREMENT TYPE DEFINITIONS        ***-->
+	<!--***       MEASUREMENT TYPE DEFINITIONS                 ***-->
 	<!--**********************************************************-->
 	<complexType name="NonNegMeasureType">
 		<simpleContent>
@@ -1483,6 +1491,12 @@
 		<restriction base="integer">
 			<minInclusive value="0"/>
 			<maxInclusive value="100"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="PercentType">
+		<restriction base="double">
+			<minInclusive value="0.0"/>
+			<maxInclusive value="100.0"/>
 		</restriction>
 	</simpleType>
 	<!--***-->
@@ -1587,7 +1601,7 @@
 	</simpleType>
 	<simpleType name="UomLwcType" final="#all">
 		<restriction base="string">
-			<enumeration value="% per Vol"/>
+			<enumeration value="% by Vol"/>
 			<enumeration value=""/>
 		</restriction>
 	</simpleType>
