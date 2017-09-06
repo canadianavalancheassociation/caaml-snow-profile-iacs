@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited by Charles Fierz with Atom 1.18.0 x64, 2017-07 -->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0"
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0.0"
 	xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS"
 	xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS"
-	xmnls:slf="http://www.slf.ch/snowprofile/1.0">
+	xmlns:slf="http://www.slf.ch/snowprofile/1.0">
 	<!-- <import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/V5.0/Profiles/SnowProfileIACS/CAAMLv5_SnowProfileIACS_GML.xsd"/> -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/caaml-v3.2.1_SnowProfileIACS_GML.xsd"/>
 	<import namespace="http://www.slf.ch/snowprofile/1.0" schemaLocation="/Users/fierz/SWITCHdrive/shareData/snoWhizz_exchange/caaml-v5.0_snowProfileIACS-implementation/slfml-v1.1_snowhizz.xsd"/>
