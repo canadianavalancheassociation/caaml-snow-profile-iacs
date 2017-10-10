@@ -1026,13 +1026,33 @@
 	<!--**********************************************************-->
 
 	<complexType name="StbTestsType" final="#all">
-		<sequence>
-			<element name="AbstractStbTest" type="caaml:AbstractStbTestType" abstract="true" minOccurs="0" maxOccurs="unbounded">
+		<choice maxOccurs="unbounded">
+			<element name="RBlockTest" type="caaml:RBlockTestType">
 				<annotation>
-					<documentation>Head of the substitution group for stability tests</documentation>
+					<documentation>Element for Rutschblock test</documentation>
 				</annotation>
 			</element>
-		</sequence>
+			<element name="ComprTest" type="caaml:ComprTestType">
+				<annotation>
+					<documentation>Element for compression test</documentation>
+				</annotation>
+			</element>
+			<element name="ExtColumnTest" type="caaml:ExtColumnTestType">
+				<annotation>
+					<documentation>Element for extended column test</documentation>
+				</annotation>
+			</element>
+			<element name="ShearFrameTest" type="caaml:ShearFrameTestType">
+				<annotation>
+					<documentation>Element for shear frame test</documentation>
+				</annotation>
+			</element>
+			<element name="PropSawTest" type="caaml:PropSawTestType">
+				<annotation>
+					<documentation>Element for propagation saw test</documentation>
+				</annotation>
+			</element>
+		</choice>
 	</complexType>
 	<complexType name="AbstractStbTestType" abstract="true">
 		<sequence>
@@ -1040,11 +1060,6 @@
 		</sequence>
 	</complexType>
 	<!-- RUTSCH BLOCK TEST-->
-	<element name="RBlockTest" type="caaml:RBlockTestType" substitutionGroup="caaml:AbstractStbTest">
-		<annotation>
-			<documentation>Element for Rutschblock test</documentation>
-		</annotation>
-	</element>
 	<complexType name="RBlockTestType" final="#all">
 		<complexContent>
 			<extension base="caaml:AbstractStbTestType">
@@ -1087,11 +1102,6 @@
 		</restriction>
 	</simpleType>
 	<!-- COMPRESSION TEST -->
-	<element name="ComprTest" type="caaml:ComprTestType" substitutionGroup="caaml:AbstractStbTest">
-		<annotation>
-			<documentation>Element for compression test</documentation>
-		</annotation>
-	</element>
 	<complexType name="ComprTestType" final="#all">
 		<complexContent>
 			<extension base="caaml:AbstractStbTestType">
@@ -1151,11 +1161,6 @@
 		</restriction>
 	</simpleType>
 	<!-- EXTENDED COLUMN TEST -->
-	<element name="ExtColumnTest" type="caaml:ExtColumnTestType" substitutionGroup="caaml:AbstractStbTest">
-		<annotation>
-			<documentation>Element for extended column test</documentation>
-		</annotation>
-	</element>
 	<complexType name="ExtColumnTestType" final="#all">
 		<complexContent>
 			<extension base="caaml:AbstractStbTestType">
@@ -1198,11 +1203,6 @@
 		</restriction>
 	</simpleType>
 	<!-- SHEAR FRAME TEST -->
-	<element name="ShearFrameTest" type="caaml:ShearFrameTestType" substitutionGroup="caaml:AbstractStbTest">
-		<annotation>
-			<documentation>Element for shear frame test</documentation>
-		</annotation>
-	</element>
 	<complexType name="ShearFrameTestType" final="#all">
 		<complexContent>
 			<extension base="caaml:AbstractStbTestType">
@@ -1228,11 +1228,6 @@
 		</complexContent>
 	</complexType>
 	<!-- PROPAGATION SAW TEST -->
-	<element name="PropSawTest" type="caaml:PropSawTestType" substitutionGroup="caaml:AbstractStbTest">
-		<annotation>
-			<documentation>Element for propagation saw test</documentation>
-		</annotation>
-	</element>
 	<complexType name="PropSawTestType" final="#all">
 		<complexContent>
 			<extension base="caaml:AbstractStbTestType">
