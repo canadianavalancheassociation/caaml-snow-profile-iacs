@@ -93,7 +93,7 @@
 				</annotation>
 			</element>
 		</sequence>
-		<attribute name="dir" type="caaml:DirectionType" use="required" default="top down"/>
+		<attribute name="dir" type="caaml:DirectionType" use="required" fixed="top down"/>
 	</complexType>
 
 	
