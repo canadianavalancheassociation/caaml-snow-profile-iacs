@@ -138,8 +138,8 @@
 
 	<complexType name="SourceRefType">
 		<choice>
-			<element ref="caaml:Operation"/>
-			<element ref="caaml:Person"/>
+			<element name="Operation" type="caaml:OperationType"/>
+			<element name="Person" type="caaml:PersonType"/>
 		</choice>
 	</complexType>
 	<complexType name="SourceType">
@@ -154,26 +154,16 @@
 		<attribute ref="gml:id" use="required"/>
 	</complexType>
 	<!-- OPERATION -->
-	<complexType name="OperationRefType" final="#all">
-		<choice>
-			<element name="Operation" type="caaml:OperationType"/>
-		</choice>
-	</complexType>
 	<complexType name="OperationType" final="#all">
 		<complexContent>
 			<extension base="caaml:SourceType">
 				<sequence>
-					<element name="contactPerson" type="caaml:PersonRefType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="contactPerson" type="caaml:PersonType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- PERSON -->
-	<complexType name="PersonRefType">
-		<choice>
-			<element name="Person" type="caaml:PersonType"/>
-		</choice>
-	</complexType>
 	<complexType name="PersonType" final="#all">
 		<complexContent>
 			<extension base="caaml:SourceType"/>
