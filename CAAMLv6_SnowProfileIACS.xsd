@@ -215,6 +215,12 @@
 					</sequence>
 				</complexType>
 			</element>
+			<element name="country" type="caaml:CountryCode" minOccurs="0"/>
+			<element name="region" type="string" minOccurs="0">
+				<annotation>
+					<documentation>State, province, canton, ... </documentation>
+				</annotation>
+			</element>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
 	</complexType>
