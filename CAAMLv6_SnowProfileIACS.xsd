@@ -1605,6 +1605,15 @@
 			<enumeration value="bottom up"/>
 		</restriction>
 	</simpleType>
+	<!-- COUNTRIES -->
+	<simpleType name="CountryCode" final="#all">
+		<annotation>
+			<documentation>Country code, use ISO 3166</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value='[A-Z][A-Z]'/>
+		</restriction>
+	</simpleType>
 
 	
 	<!--**********************************************************-->
