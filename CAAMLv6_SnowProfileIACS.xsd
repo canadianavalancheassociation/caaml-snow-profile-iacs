@@ -1058,7 +1058,7 @@
 							<documentation>This tag is to encode the rutschblock test result RB7</documentation>
 						</annotation>
 					</element>
-					<element name="failedOn" maxOccur="unbounded">
+					<element name="failedOn" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
@@ -1105,7 +1105,7 @@
 							<documentation>Encoding of CTN (No fractiure)</documentation>
 						</annotation>
 					</element>
-					<element name="failedOn" maxOccur="unbounded">
+					<element name="failedOn" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
@@ -1169,7 +1169,7 @@
 							<documentation>Test result of ECTX</documentation>
 						</annotation>
 					</element>
-					<element name="failedOn" maxOccur="unbounded">
+					<element name="failedOn" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
@@ -1212,7 +1212,7 @@
 			<extension base="caaml:AbstractStbTestType">
 				<choice>
 					<element name="noFailure"/>
-					<element name="failedOn" maxOccur="unbounded">
+					<element name="failedOn" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
@@ -1241,7 +1241,7 @@
 		<complexContent>
 			<extension base="caaml:AbstractStbTestType">
 				<sequence>
-					<element name="failedOn" maxOccur="unbounded">
+					<element name="failedOn" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
