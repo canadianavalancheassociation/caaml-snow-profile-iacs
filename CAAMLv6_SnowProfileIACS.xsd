@@ -690,6 +690,7 @@
 			<enumeration value="Snow Cylinder"/>
 			<enumeration value="Snow Cutter"/>
 			<enumeration value="Denoth Probe"/>
+			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
 	<!-- EMBEDDED LWC PROFILES -->
@@ -741,6 +742,7 @@
 		<restriction base="string">
 			<enumeration value="Denoth Probe"/>
 			<enumeration value="Snow Fork"/>
+			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
 	<!-- EMBEDDED SPEC SURFACE AREA PROFILES -->
@@ -812,6 +814,7 @@
 	<simpleType name="SpecSurfAreaMethodOfMeasEnumType">
 		<restriction base="string">
 			<enumeration value="Ice Cube"/>
+			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
 	<!-- EMBEDDED HARDNESS PROFILE -->
@@ -892,6 +895,7 @@
 			<enumeration value="SnowMicroPen"/>
 			<enumeration value="Ram Sonde"/>
 			<enumeration value="Push-Pull Gauge"/>
+			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
 	<!-- EMBEDDED STRENGHT PROFILES -->
@@ -948,6 +952,7 @@
 	<simpleType name="StrengthMethodOfMeasEnumType">
 		<restriction base="string">
 			<enumeration value="Shear Frame"/>
+			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="StrengthEnumType">
@@ -1010,7 +1015,7 @@
 	</simpleType>
 	<simpleType name="ImpurityMethodOfMeasEnumType">
 		<restriction base="string">
-			<enumeration value="NA"/>
+			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="ImpurityType">
