@@ -1113,7 +1113,7 @@
 				<choice>
 					<element name="noFailure">
 						<annotation>
-							<documentation>Encoding of CTN (No fractiure)</documentation>
+							<documentation>Encoding of CTN (No fracture)</documentation>
 						</annotation>
 					</element>
 					<element name="failedOn" maxOccurs="unbounded">
@@ -1126,7 +1126,7 @@
 											<element name="fractureCharacter" type="caaml:FractureCharacterType" minOccurs="0"/>
 											<element name="testScore" type="caaml:ComprTestScoreType">
 												<annotation>
-													<documentation>Compression test score (0 to 30, CTE, CTM, CTH)</documentation>
+													<documentation>Compression test score (0 to 30, CTV, CTE, CTM, CTH)</documentation>
 												</annotation>
 											</element>
 										</sequence>
@@ -1147,10 +1147,10 @@
 	</simpleType>
 	<simpleType name="ComprTestScoreNumType">
 		<annotation>
-			<documentation>Numerical compression test scores (1-30)</documentation>
+			<documentation>Numerical compression test scores (0-30)</documentation>
 		</annotation>
 		<restriction base="int">
-			<minInclusive value="1"/>
+			<minInclusive value="0"/>
 			<maxInclusive value="30"/>
 		</restriction>
 	</simpleType>
