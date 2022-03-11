@@ -574,11 +574,27 @@
 					<complexContent>
 						<extension base="caaml:StratigraphicLayerBaseType">
 							<sequence>
-								<element name="hardness" type="caaml:HardnessType" minOccurs="0">
-									<annotation>
-										<documentation>Property element for estimated snow (hand) hardness</documentation>
-									</annotation>
-								</element>
+								<choice>
+									<sequence>
+										<element name="hardness" type="caaml:HardnessType" minOccurs="0">
+											<annotation>
+												<documentation>Property element for estimated snow (hand) hardness</documentation>
+											</annotation>
+										</element>
+									</sequence>
+									<sequence>
+										<element name="hardnessTop" type="caaml:HardnessType" minOccurs="0">
+											<annotation>
+												<documentation>Property element for estimated snow (hand) hardness at the top of the layer</documentation>
+											</annotation>
+										</element>
+										<element name="hardnessBottom" type="caaml:HardnessType" minOccurs="0">
+											<annotation>
+												<documentation>Property element for estimated snow (hand) hardness at the bottom of the layer</documentation>
+											</annotation>
+										</element>
+									</sequence>
+								</choice>
 								<element name="wetness" type="caaml:LwcType" minOccurs="0">
 									<annotation>
 										<documentation>Property element for estimated snow wetness</documentation>
