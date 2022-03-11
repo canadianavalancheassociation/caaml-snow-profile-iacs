@@ -50,6 +50,10 @@
 				<annotation>
 					<documentation>Property element for stratigraphic layer profile</documentation>
 				</annotation>
+				<unique name="uniqueLayerOfConcern">
+					<selector xpath="Layer"/>
+					<field xpath="caaml:layerOfConcern"/>
+				</unique>
 			</element>
 			<element name="tempProfile" type="caaml:TempProfileType" minOccurs="0">
 				<annotation>
@@ -598,6 +602,11 @@
 								<element name="wetness" type="caaml:LwcType" minOccurs="0">
 									<annotation>
 										<documentation>Property element for estimated snow wetness</documentation>
+									</annotation>
+								</element>
+								<element name="layerOfConcern" type="caaml:LayerOfConcernType" minOccurs="0" fixed="true">
+									<annotation>
+										<documentation>Property element for definition of the most prominent weak layer in the profile</documentation>
 									</annotation>
 								</element>
 							</sequence>
@@ -1348,8 +1357,22 @@
 			</extension>
 		</complexContent>
 	</complexType>
+	<complexType name="LayerOfConcernType">
+		<simpleContent>
+			<extension base="boolean">
+				<attribute name="partOfLayer" type="caaml:PartOfLayerType"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="PartOfLayerType">
+		<restriction base="string">
+			<enumeration value="top"/>
+			<enumeration value="bottom"/>
+			<enumeration value="all"/>
+		</restriction>
+	</simpleType>
 
-	
+
 	<!--**********************************************************-->
 	<!--*** DEFINTIION OF PROPERTY ELEMENTS                    ***-->
 	<!--**********************************************************-->
