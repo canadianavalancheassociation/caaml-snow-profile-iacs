@@ -27,6 +27,7 @@
 			</element>
 			<element name="application" type="string" minOccurs="0"/>
 			<element name="applicationVersion" type="string" minOccurs="0"/>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
 	</complexType>
@@ -92,6 +93,7 @@
 					<documentation>Property element for series of stability test results</documentation>
 				</annotation>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute name="dir" type="caaml:DirectionType" use="required" fixed="top down"/>
 	</complexType>
@@ -111,6 +113,7 @@
 			<element name="recordTime" type="caaml:ValidTimeType"/>
 			<element name="dateTimeReport" type="gml:TimePositionType" minOccurs="0"/>
 			<element name="dateTimeLastEdit" type="gml:TimePositionType" minOccurs="0"/>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<complexType name="ValidTimeType" final="#all">
@@ -150,6 +153,7 @@
 				</annotation>
 			</element>
 			<element name="name" type="string"/>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
 	</complexType>
@@ -211,6 +215,7 @@
 					<documentation>State, province, canton, ... </documentation>
 				</annotation>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
 	</complexType>
@@ -325,6 +330,7 @@
 					<documentation>Property element for wind direction</documentation>
 				</annotation>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<simpleType name="PrecipTIType" final="#all">
@@ -422,6 +428,7 @@
 					<documentation>Propert element for penetration depth of a person standing on one ski</documentation>
 				</annotation>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<complexType name="SurfFeatureType" final="#all">
@@ -523,6 +530,7 @@
 					<documentation>Property element for irregular intervall height of new snow and snow water equivalent - NEED TO ADD TO CAAML</documentation>
 				</annotation>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<complexType name="SnowHeightPointIrregularType" final="#all">
@@ -605,6 +613,7 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<!-- EMBEDDED TEMPERATURE PROFILE -->
@@ -634,6 +643,7 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<!-- EMBEDDED DENSITY PROFILES -->
@@ -691,6 +701,7 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<simpleType name="DensityMethodOfMeasType">
@@ -745,6 +756,7 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<simpleType name="LwcMethodOfMeasType">
@@ -818,6 +830,7 @@
 					</complexType>
 				</element>
 			</choice>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<simpleType name="SpecSurfAreaMethodOfMeasType">
@@ -894,6 +907,7 @@
 					</complexType>
 				</element>
 			</choice>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute name="uomWeightHammer" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomWeightTube" type="caaml:UomWeightType" use="optional" fixed="kg"/>
@@ -956,6 +970,7 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<simpleType name="StrengthMethodOfMeasType">
@@ -1020,6 +1035,7 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<simpleType name="ImpurityMethodOfMeasType">
@@ -1078,6 +1094,7 @@
 	<complexType name="AbstractStbTestType" abstract="true">
 		<sequence>
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<!-- RUTSCH BLOCK TEST-->
@@ -1301,6 +1318,7 @@
 	<complexType name="LayerPointObsRootType">
 		<sequence>
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
+			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<complexType name="PointObsInProfileBaseType">
@@ -1568,7 +1586,6 @@
 	<complexType name="MetaDataBaseType">
 		<sequence>
 			<element ref="caaml:comment" minOccurs="0"/>
-			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<!-- COMMENTS -->
