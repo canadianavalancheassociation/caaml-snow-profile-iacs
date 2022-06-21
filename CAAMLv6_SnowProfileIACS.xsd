@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0.3"
-	xmlns:caaml="http://caaml.org/Schemas/SnowProfileIACS/v6.0.3"
-	xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/SnowProfileIACS/v6.0.3">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0.4"
+	xmlns:caaml="http://caaml.org/Schemas/SnowProfileIACS/v6.0.4"
+	xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/SnowProfileIACS/v6.0.4">
 	
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/SnowProfileIACS/v6.0.3/CAAMLv6_SnowProfileIACS_GML.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/SnowProfileIACS/v6.0.4/CAAMLv6_SnowProfileIACS_GML.xsd"/>
 
 	
 	<!--**********************************************************-->
