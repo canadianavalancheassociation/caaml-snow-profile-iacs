@@ -58,7 +58,7 @@
 			</element>
 			<element name="tempProfile" type="caaml:TempProfileType" minOccurs="0">
 				<annotation>
-					<documentation>Property element for temperature profile independent of statigraphic profile</documentation>
+					<documentation>Property element for temperature profile independent of stratigraphic profile</documentation>
 				</annotation>
 			</element>
 			<element name="densityProfile" type="caaml:DensityProfileType" minOccurs="0" maxOccurs="unbounded">
@@ -73,12 +73,12 @@
 			</element>
 			<element name="specSurfAreaProfile" type="caaml:SpecSurfAreaProfileType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation>Property element for specific surface area profile independent of statigraphic profile</documentation>
+					<documentation>Property element for specific surface area profile independent of stratigraphic profile</documentation>
 				</annotation>
 			</element>
 			<element name="hardnessProfile" type="caaml:HardnessProfileType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation>Property element for hardness profile (penetrometer resistance, ram sonde, push pull gauge) independent of statigraphic profile</documentation>
+					<documentation>Property element for hardness profile (penetrometer resistance, ram sonde, push pull gauge) independent of stratigraphic profile</documentation>
 				</annotation>
 			</element>
 			<element name="strengthProfile" type="caaml:StrengthProfileType" minOccurs="0" maxOccurs="unbounded">
