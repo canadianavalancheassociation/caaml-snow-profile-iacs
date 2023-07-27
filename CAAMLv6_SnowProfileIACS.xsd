@@ -1278,8 +1278,13 @@
 	<complexType name="PropSawTestType" final="#all">
 		<complexContent>
 			<extension base="caaml:AbstractStbTestType">
-				<sequence>
-					<element name="failedOn" maxOccurs="unbounded">
+				<choice>
+					<element name="noFailure">
+						<annotation>
+							<documentation>Test result of PSTX</documentation>
+						</annotation>
+					</element>
+					<element name="failedOn">
 						<complexType>
 							<sequence>
 								<element name="Layer" type="caaml:StratigraphicLayerBaseType"/>
@@ -1314,7 +1319,7 @@
 							</sequence>
 						</complexType>
 					</element>
-				</sequence>
+				</choice>
 			</extension>
 		</complexContent>
 	</complexType>
