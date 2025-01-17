@@ -366,7 +366,7 @@
 	<!-- WEATHER -->
 	<complexType name="WeatherCondType" final="#all">
 		<sequence>
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
+			<element name="metaData" type="caaml:WeatherCondMetaDataType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for description of weather conditions</documentation>
 				</annotation>
@@ -398,6 +398,24 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+	</complexType>
+<complexType name="WeatherCondMetaDataType">
+		<complexContent>
+			<extension base="caaml:MetaDataBaseType">
+				<sequence>
+					<element name="airTempMeasurementHeight" type="caaml:MeasureHeightMType" minOccurs="0">
+						<annotation>
+							<documentation>Measurement height (m) for air temperature</documentation>
+						</annotation>
+					</element>
+					<element name="windMeasurementHeight" type="caaml:MeasureHeightMType" minOccurs="0">
+						<annotation>
+							<documentation>Measurement height (m) for wind speed and direction</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
 	</complexType>
 	<simpleType name="PrecipTIType" final="#all">
 		<union memberTypes="gml:NilReasonEnumeration caaml:PrecipTIMetarBaseType"/>
