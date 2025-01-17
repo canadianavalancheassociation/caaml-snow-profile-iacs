@@ -725,7 +725,15 @@
 			<enumeration value="Snow Tube"/>
 			<enumeration value="Snow Cylinder"/>
 			<enumeration value="Snow Cutter"/>
+			<enumeration value="Snow wedge Cutter"/>
+			<enumeration value="other gravimetric measurement method"/>
 			<enumeration value="Denoth Probe"/>
+			<enumeration value="SnowPro Probe"/>
+			<enumeration value="Snow Fork"/>
+			<enumeration value="other dielectric permittivity method"/>
+			<enumeration value="Tomography"/>
+			<enumeration value="SMP"/>
+			<enumeration value="Neutron scattering probe"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
