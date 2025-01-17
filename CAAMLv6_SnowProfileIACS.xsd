@@ -502,7 +502,21 @@
 			<element name="Components">
 				<complexType>
 					<sequence>
-						<element name="surfRoughness" type="caaml:SurfRoughnessType"/>
+						<element name="surfRoughness" type="caaml:SurfRoughnessType">
+							<annotation>
+								<documentation>Surface Roughness according to Fierz et al., 2009</documentation>
+							</annotation>
+						</element>
+						<element name="surfWindFeatures" type="caaml:SurfWindFeatureType" minOccurs="0">
+							<annotation>
+								<documentation>Surface Wind features. For details, see Filhol and Sturm, 2015 and Kochanski, Anderson, and Tucker, 2019.</documentation>
+							</annotation>
+						</element>
+						<element name="surfMeltRainFeatures" type="caaml:SurfMeltRainFeatureType" minOccurs="0">
+							<annotation>
+								<documentation>Surface Melt Rain features. For details, see Filhol and Sturm, 2015 and Kochanski, Anderson, and Tucker, 2019.</documentation>
+							</annotation>
+						</element>
 						<element name="validAmplitude" minOccurs="0">
 							<annotation>
 								<documentation>Property element for vertical extent of surface feature (amplitude)</documentation>
@@ -571,6 +585,36 @@
 			<enumeration value="rcv"/>
 			<enumeration value="rcx"/>
 			<enumeration value="rrd"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SurfWindFeatureType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:SurfWindFeatureBaseEnumType"/>
+	</simpleType>
+	<simpleType name="SurfWindFeatureBaseEnumType">
+		<restriction base="string">
+			<enumeration value="No observable wind bedforms"/>
+			<enumeration value="Snowdrift around obstacles"/>
+			<enumeration value="Snow ripples"/>
+			<enumeration value="Snow waves"/>
+			<enumeration value="Barchan dunes"/>
+			<enumeration value="Dunes"/>
+			<enumeration value="Loose patches"/>
+			<enumeration value="Pits"/>
+			<enumeration value="Snow steps"/>
+			<enumeration value="Sastrugi"/>
+			<enumeration value="mixed"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SurfMeltRainFeatureType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:SurfMeltRainFeatureBaseEnumType"/>
+	</simpleType>
+	<simpleType name="SurfMeltRainFeatureBaseEnumType">
+		<restriction base="string">
+			<enumeration value="Sun cups"/>
+			<enumeration value="Penitents"/>
+			<enumeration value="Melt or rain furrows"/>
+			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
 	<!-- SNOW PACK -->
