@@ -859,6 +859,11 @@
 					<documentation>Property element for height of snowpack or snow depth and snow water equivalent</documentation>
 				</annotation>
 			</element>
+			<element name="hSVariability" type="caaml:SnowHeightPointRegularType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for typical standard deviation of the height of snowpack or snow depth and snow water equivalent in the immediate proximity of the snow pit</documentation>
+				</annotation>
+			</element>
 			<element name="hN24" type="caaml:SnowHeightPointRegularType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for 24 hour height of new snow and snow water equivalent</documentation>
