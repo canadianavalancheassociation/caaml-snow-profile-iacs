@@ -1223,6 +1223,7 @@
 			<enumeration value="Black Carbon"/>
 			<enumeration value="Dust"/>
 			<enumeration value="Isotopes"/>
+			<enumeration value="Other"/>
 		</restriction>
 	</simpleType>
 
