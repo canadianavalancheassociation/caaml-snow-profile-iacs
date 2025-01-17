@@ -1015,6 +1015,11 @@
 										<documentation>Surface of indentation in m2</documentation>
 									</annotation>
 								</element>
+								<element name="penetrationSpeed" type="caaml:MeasureSpeedType" minOccurs="0">
+									<annotation>
+										<documentation>Speed of the penetration for hardness measurement m.s-1 (especially for automated measurements such as SMP or similar)</documentation>
+									</annotation>
+								</element>
 							</sequence>
 						</extension>
 					</complexContent>
