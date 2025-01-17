@@ -1010,6 +1010,19 @@
 				<complexType>
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="methodOfMeas" type="caaml:TempMethodOfMeasType" minOccurs="0" />
+								<element name="uncertaintyOfMeas" type="caaml:SnowTempType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of all measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of all measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
