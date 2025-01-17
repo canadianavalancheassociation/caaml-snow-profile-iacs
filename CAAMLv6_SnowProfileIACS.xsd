@@ -810,6 +810,10 @@
 		<restriction base="string">
 			<enumeration value="Denoth Probe"/>
 			<enumeration value="Snow Fork"/>
+			<enumeration value="SnowPro Probe"/>
+			<enumeration value="WISe"/>
+			<enumeration value="other dielectric permittivity method"/>
+			<enumeration value="MRI"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
