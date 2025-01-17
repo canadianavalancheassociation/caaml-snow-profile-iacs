@@ -869,6 +869,16 @@
 					<documentation>Property element for irregular intervall height of new snow and snow water equivalent - NEED TO ADD TO CAAML</documentation>
 				</annotation>
 			</element>
+			<element name="snowTransport" type="caaml:SnowTransportType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for identifying whether snow transport was observed at the observation time.</documentation>
+				</annotation>
+			</element>
+			<element name="snowTransportOccurrence24" type="caaml:PercentOrNilReasonType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for percentage of time with snow transport occurrence in the past 24h (for instance recovered from flow capt sensors).</documentation>
+				</annotation>
+			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
@@ -899,6 +909,17 @@
 			</element>
 		</sequence>
 	</complexType>
+	<simpleType name="SnowTransportType">
+		<union memberTypes="caaml:SnowTransportEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="SnowTransportEnumType">
+		<restriction base="string">
+			<enumeration value="No snow transport"/>
+			<enumeration value="Modified saltation"/>
+			<enumeration value="Drifting snow"/>
+			<enumeration value="Blowing snow"/>
+		</restriction>
+	</simpleType>
 
 
 	<!--**********************************************************-->
