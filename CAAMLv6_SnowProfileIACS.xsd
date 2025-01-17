@@ -220,6 +220,107 @@
 				</annotation>
 			</element>
 			<element name="solarMask" type="caaml:SolarMaskType" minOccurs="0"/>
+			<element name="obsPointEnvironment" minOccurs="0">
+				<annotation>
+					<documentation>Description of the site environment: soil and surrounding vegetation or forest characteristics</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="bedSurface" type="caaml:BedSurfaceType" minOccurs="0">
+							<annotation>
+								<documentation>The bed surface type</documentation>
+							</annotation>
+						</element>
+						<element name="bedSurfaceComment" type="caaml:CommentType" minOccurs="0">
+							<annotation>
+								<documentation>Free text description of the bed surface</documentation>
+							</annotation>
+						</element>
+						<element name="litterThickness" minOccurs="0">
+							<annotation>
+								<documentation>Litter thickness, in case of the presence of a layer of litter on the soil</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="iceThickness" minOccurs="0">
+							<annotation>
+								<documentation>Ice thickness, in case the seasonal snow lie on a icy surface</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="lowVegetationHeight" minOccurs="0">
+							<annotation>
+								<documentation>Height of low vegetation in case of presence of low vegetation (e.g. grass)</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="lai" minOccurs="0">
+							<annotation>
+								<documentation>Leaf area index, including both low and high vegetation, measured in summer</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomUnitType" use="required" fixed="1"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="forestPresence" type="caaml:ForestPresenceType" minOccurs="0">
+							<annotation>
+								<documentation>Presence (or not) of forest at the observation site</documentation>
+							</annotation>
+						</element>
+						<element name="forestComment" type="caaml:CommentType" minOccurs="0">
+							<annotation>
+								<documentation>Free text description of the bed surface</documentation>
+							</annotation>
+						</element>
+						<element name="skyViewFactor" minOccurs="0">
+							<annotation>
+								<documentation>Sky view factor. The part of the visible sky on an hemisphere centered at the observation point.</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomUnitType" use="required" fixed="1"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="treeHeight" minOccurs="0">
+							<annotation>
+								<documentation>Tree height in case of forest site.</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
@@ -357,6 +458,41 @@
 			<maxInclusive value="90"/>
 		</restriction>
 	</simpleType>
+<simpleType name="BedSurfaceType">
+		<union memberTypes="caaml:BedSurfaceEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="BedSurfaceEnumType">
+		<restriction base="string">
+			<enumeration value="Sea ice"/>
+			<enumeration value="Glacier"/>
+			<enumeration value="Ice cap"/>
+			<enumeration value="Fresh water ice"/>
+			<enumeration value="Wetlands"/>
+			<enumeration value="Grassland"/>
+			<enumeration value="Shrubs"/>
+			<enumeration value="Rocks"/>
+			<enumeration value="Bare ground"/>
+			<enumeration value="Needle litter"/>
+			<enumeration value="Broadleaf litter"/>
+			<enumeration value="Artificial surface"/>
+			<enumeration value="Mixed"/>
+			<enumeration value="Other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ForestPresenceType">
+		<union memberTypes="caaml:ForestPresenceEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="ForestPresenceEnumType">
+		<restriction base="string">
+			<enumeration value="Open Area"/>
+			<enumeration value="Broadleaf forest"/>
+			<enumeration value="Needle forest"/>
+			<enumeration value="Mixed forest"/>
+			<enumeration value="Shrubs"/>
+			<enumeration value="Other"/>
+		</restriction>
+	</simpleType>
+
 
 	
 	<!--**********************************************************-->
