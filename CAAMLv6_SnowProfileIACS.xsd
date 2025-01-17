@@ -468,7 +468,7 @@
 			<maxInclusive value="90"/>
 		</restriction>
 	</simpleType>
-<simpleType name="BedSurfaceType">
+	<simpleType name="BedSurfaceType">
 		<union memberTypes="caaml:BedSurfaceEnumType gml:NilReasonEnumeration"/>
 	</simpleType>
 	<simpleType name="BedSurfaceEnumType">
@@ -545,7 +545,7 @@
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
-<complexType name="WeatherCondMetaDataType">
+	<complexType name="WeatherCondMetaDataType">
 		<complexContent>
 			<extension base="caaml:MetaDataBaseType">
 				<sequence>
@@ -1053,11 +1053,11 @@
 			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
-<attribute name="id" type="ID" />
+		<attribute name="id" type="ID" />
 		<attribute name="relatedProfiles" type="IDREFS" />
 		<attribute name="name" type="string" />
 	</complexType>
-<simpleType name="TempMethodOfMeasType">
+	<simpleType name="TempMethodOfMeasType">
 		<union memberTypes="caaml:TempMethodOfMeasEnumType gml:NilReasonEnumeration"/>
 	</simpleType>
 	<simpleType name="TempMethodOfMeasEnumType">
@@ -1474,7 +1474,7 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
-<attribute name="id" type="ID" />
+		<attribute name="id" type="ID" />
 		<attribute name="relatedProfiles" type="IDREFS" />
 		<attribute name="name" type="string" />
 	</complexType>
@@ -1564,7 +1564,7 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
-<attribute name="id" type="ID" />
+		<attribute name="id" type="ID" />
 		<attribute name="relatedProfiles" type="IDREFS" />
 		<attribute name="name" type="string" />
 	</complexType>
@@ -1739,7 +1739,7 @@
 	<complexType name="AbstractStbTestType" abstract="true">
 		<sequence>
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
-<element name="testNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="testNr" type="caaml:NrBaseType" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute name="id" type="ID" />
@@ -2380,7 +2380,7 @@
 			</simpleType>
 		</union>
 	</simpleType>
-<complexType name="WaveLengthType" final="#all">
+	<complexType name="WaveLengthType" final="#all">
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
 				<attribute name="uom" type="gml:UomIdentifier" use="required" fixed="nm"/>
@@ -2463,7 +2463,7 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-<complexType name="MeasureSpecSurfAreaTypeWithUncertainty" final="#all">
+	<complexType name="MeasureSpecSurfAreaTypeWithUncertainty" final="#all">
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
 				<attribute name="uom" type="caaml:UomSpecSurfAreaType" use="required"/>
@@ -2495,7 +2495,7 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-<complexType name="MeasureLwcTypeWithUncertainty" final="#all">
+	<complexType name="MeasureLwcTypeWithUncertainty" final="#all">
 		<simpleContent>
 			<extension base="caaml:PercentOrNilReasonType">
 				<attribute name="uom" type="caaml:UomLwcType" use="required"/>
@@ -2527,7 +2527,7 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-<complexType name="MeasureHeightMType" final="#all">
+	<complexType name="MeasureHeightMType" final="#all">
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
 				<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
@@ -2634,7 +2634,7 @@
 			<enumeration value=""/>
 		</restriction>
 	</simpleType>
-<simpleType name="UomSpdType" final="#all">
+	<simpleType name="UomSpdType" final="#all">
 		<restriction base="string">
 			<enumeration value="ms-1"/>
 			<enumeration value=""/>
