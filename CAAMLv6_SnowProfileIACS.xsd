@@ -890,6 +890,18 @@
 	<simpleType name="SpecSurfAreaMethodOfMeasEnumType">
 		<restriction base="string">
 			<enumeration value="Ice Cube"/>
+			<enumeration value="IRIS"/>
+			<enumeration value="InfraSnow"/>
+			<enumeration value="DUFFISSS-1310"/>
+			<enumeration value="DUFFISSS-1550"/>
+			<enumeration value="HISSGraS"/>
+			<enumeration value="ASSSAP"/>
+			<enumeration value="other IR integrating sphere"/>
+			<enumeration value="SWIRcam"/>
+			<enumeration value="SnowImager"/>
+			<enumeration value="other NIR method"/>
+			<enumeration value="Tomography"/>
+			<enumeration value="SMP"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
