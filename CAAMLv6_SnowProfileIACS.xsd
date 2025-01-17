@@ -2371,6 +2371,20 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+<complexType name="MeasureHeightMType" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="MeasureSpeedType" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomSpdType" use="required" fixed="ms-1"/>
+			</extension>
+		</simpleContent>
+	</complexType>
 
 	
 	<!--**********************************************************-->
