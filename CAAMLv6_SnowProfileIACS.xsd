@@ -2478,6 +2478,12 @@
 			<enumeration value=""/>
 		</restriction>
 	</simpleType>
+<simpleType name="UomSpdType" final="#all">
+		<restriction base="string">
+			<enumeration value="ms-1"/>
+			<enumeration value=""/>
+		</restriction>
+	</simpleType>
 
 	<simpleType name="QualityOfMeasType">
 		<union memberTypes="caaml:QualityOfMeasEnumType gml:NilReasonEnumeration"/>
