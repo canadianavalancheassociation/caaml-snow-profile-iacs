@@ -577,6 +577,10 @@
 				<complexType>
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
+							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
