@@ -1074,6 +1074,10 @@
 			<enumeration value="SnowMicroPen"/>
 			<enumeration value="Ram Sonde"/>
 			<enumeration value="Push-Pull Gauge"/>
+			<enumeration value="Avatech SP1"/>
+			<enumeration value="Avatech SP2"/>
+			<enumeration value="Scope propagation labs"/>
+			<enumeration value="other automatic penetrometer"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
