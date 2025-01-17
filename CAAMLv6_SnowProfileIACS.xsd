@@ -1149,7 +1149,7 @@
 			<enumeration value="Snow Fork"/>
 			<enumeration value="other dielectric permittivity method"/>
 			<enumeration value="Tomography"/>
-			<enumeration value="SMP"/>
+			<enumeration value="SnowMicroPen"/>
 			<enumeration value="Neutron scattering probe"/>
 			<enumeration value="other"/>
 		</restriction>
@@ -1310,7 +1310,7 @@
 			<enumeration value="SnowImager"/>
 			<enumeration value="other NIR method"/>
 			<enumeration value="Tomography"/>
-			<enumeration value="SMP"/>
+			<enumeration value="SnowMicroPen"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
@@ -1345,7 +1345,7 @@
 								</element>
 								<element name="penetrationSpeed" type="caaml:MeasureSpeedType" minOccurs="0">
 									<annotation>
-										<documentation>Speed of the penetration for hardness measurement m.s-1 (especially for automated measurements such as SMP or similar)</documentation>
+										<documentation>Speed of the penetration for hardness measurement m.s-1 (especially for automated measurements such as SnowMicroPen or similar)</documentation>
 									</annotation>
 								</element>
 							</sequence>
