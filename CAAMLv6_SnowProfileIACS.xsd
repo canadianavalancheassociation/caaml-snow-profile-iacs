@@ -726,6 +726,7 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 <attribute name="id" type="ID" />
