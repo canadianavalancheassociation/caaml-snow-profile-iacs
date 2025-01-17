@@ -1092,7 +1092,7 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="density" type="caaml:MeasureDensityType"/>
+								<element name="density" type="caaml:MeasureDensityTypeWithUncertainty"/>
 							</sequence>
 						</extension>
 					</complexContent>
@@ -1163,7 +1163,7 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="lwc" type="caaml:MeasureLwcType"/>
+								<element name="lwc" type="caaml:MeasureLwcTypeWithUncertainty"/>
 							</sequence>
 						</extension>
 					</complexContent>
@@ -1248,7 +1248,7 @@
 						<complexContent>
 							<extension base="caaml:LayerInProfileBaseType">
 								<sequence>
-									<element name="specSurfArea" type="caaml:MeasureSpecSurfAreaType"/>
+									<element name="specSurfArea" type="caaml:MeasureSpecSurfAreaTypeWithUncertainty"/>
 								</sequence>
 							</extension>
 						</complexContent>
@@ -1425,7 +1425,7 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="strengthValue" type="caaml:MeasurePressureType"/>
+								<element name="strengthValue" type="caaml:MeasurePressureTypeWithUncertainty"/>
 								<element name="fractureCharacter" type="caaml:FractureCharacterType" minOccurs="0"/>
 							</sequence>
 						</extension>
@@ -1513,8 +1513,8 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<choice>
-								<element name="massFraction" type="caaml:NonNegMeasureType"/>
-								<element name="volumeFraction" type="caaml:NonNegMeasureType"/>
+								<element name="massFraction" type="caaml:NonNegMeasureTypeWithUncertainty"/>
+								<element name="volumeFraction" type="caaml:NonNegMeasureTypeWithUncertainty"/>
 							</choice>
 						</extension>
 					</complexContent>
@@ -2162,6 +2162,15 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+	<complexType name="NonNegMeasureTypeWithUncertainty">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="gml:UomIdentifier" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<simpleType name="NonNegDoubleOrNilReasonType">
 		<union memberTypes="gml:NilReasonEnumeration">
 			<simpleType>
@@ -2171,9 +2180,25 @@
 			</simpleType>
 		</union>
 	</simpleType>
+	<complexType name="NonNegDoubleTypeWithUncertainty">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<simpleType name="DoubleOrNilReasonType">
 		<union memberTypes="gml:NilReasonEnumeration double"/>
 	</simpleType>
+	<complexType name="DoubleOrNilReasonTypeWithUncertainty">
+		<simpleContent>
+			<extension base="caaml:DoubleOrNilReasonType">
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<simpleType name="NonNegIntOrNilReasonType">
 		<union memberTypes="gml:NilReasonEnumeration">
 			<simpleType>
@@ -2275,6 +2300,15 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+<complexType name="MeasureSpecSurfAreaTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomSpecSurfAreaType" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<complexType name="MeasureDensityType" final="#all">
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
@@ -2282,10 +2316,28 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+	<complexType name="MeasureDensityTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomDensityType" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<complexType name="MeasureLwcType" final="#all">
 		<simpleContent>
 			<extension base="caaml:PercentOrNilReasonType">
 				<attribute name="uom" type="caaml:UomLwcType" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+<complexType name="MeasureLwcTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:PercentOrNilReasonType">
+				<attribute name="uom" type="caaml:UomLwcType" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -2300,6 +2352,15 @@
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
 				<attribute name="uom" type="caaml:UomPressureType" use="required" fixed="Nm-2"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="MeasurePressureTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomPressureType" use="required" fixed="Nm-2"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
 			</extension>
 		</simpleContent>
 	</complexType>
