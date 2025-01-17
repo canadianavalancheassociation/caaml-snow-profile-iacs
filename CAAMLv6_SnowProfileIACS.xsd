@@ -651,7 +651,12 @@
 								<element name="snowTemp" type="caaml:SnowTempType"/>
 								<element name="uncertaintyOfMeas" type="caaml:SnowTempType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 							</sequence>
@@ -691,7 +696,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureDensityType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probeVolume" type="caaml:MeasureVolumeType" minOccurs="0">
@@ -772,7 +782,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureLwcType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
@@ -832,7 +847,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureSpecSurfAreaType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
@@ -920,7 +940,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureForceType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="surfOfIndentation" type="caaml:MeasureAreaType" minOccurs="0">
@@ -1010,7 +1035,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasurePressureType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedArea" type="caaml:MeasureAreaType" minOccurs="0">
@@ -1078,7 +1108,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:NonNegMeasureType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
@@ -1978,5 +2013,18 @@
 			<enumeration value=""/>
 		</restriction>
 	</simpleType>
+
+	<simpleType name="QualityOfMeasType">
+		<union memberTypes="caaml:QualityOfMeasEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="QualityOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Good"/>
+			<enumeration value="Uncertain"/>
+			<enumeration value="Low"/>
+			<enumeration value="Bad"/>
+		</restriction>
+	</simpleType>
+
 
 </schema>
