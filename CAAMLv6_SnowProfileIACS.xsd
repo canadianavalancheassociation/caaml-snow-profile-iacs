@@ -724,6 +724,47 @@
 							</complexType>
 						</element>
 						<element name="validAspect" type="caaml:ValidAspectType" minOccurs="0"/>
+						<element name="lapPresence" type="caaml:LapPresenceType">
+							<annotation>
+								<documentation>Presence of light absorbing particles at surface</documentation>
+							</annotation>
+						</element>
+						<element name="surfTemp" minOccurs="0">
+							<annotation>
+								<documentation>Surface Temperature</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="methodOfMeas" type="caaml:SurfTempMethodOfMeasType" />
+									<element name="data" type="caaml:TempType" />
+								</sequence>
+							</complexType>
+						</element>
+						<element name="surfAlbedo" minOccurs="0">
+							<annotation>
+								<documentation>Surface Albedo, either spectral or bulk</documentation>
+							</annotation>
+							<complexType>
+								<choice>
+									<element name="albedo">
+										<complexType>
+											<sequence>
+												<element name="albedoMeasurement" type="caaml:NonNegDoubleOrNilReasonType"/>
+												<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
+											</sequence>
+										</complexType>
+									</element>
+									<element name="spectralAlbedo">
+										<complexType>
+											<sequence>
+												<element name="spectralAlbedoMeasurement" type="caaml:SpectralAlbedoMeasurementType" maxOccurs="unbounded"/>
+												<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
+											</sequence>
+										</complexType>
+									</element>
+								</choice>
+							</complexType>
+						</element>
 					</sequence>
 				</complexType>
 			</element>
@@ -771,6 +812,40 @@
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
+	<simpleType name="LapPresenceType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:LapPresenceBaseEnumType"/>
+	</simpleType>
+	<simpleType name="LapPresenceBaseEnumType">
+		<restriction base="string">
+			<enumeration value="No LAP"/>
+			<enumeration value="Black Carbon"/>
+			<enumeration value="Dust"/>
+			<enumeration value="Mixed"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SurfTempMethodOfMeasType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:SurfTempMethodOfMeasEnumType"/>
+	</simpleType>
+	<simpleType name="SurfTempMethodOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Thermometer"/>
+			<enumeration value="Hemishperic IR"/>
+			<enumeration value="IR thermometer"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<complexType name="SpectralAlbedoMeasurementType">
+		<sequence>
+			<element name="minWaveLength" type="caaml:WaveLengthType" />
+			<element name="maxWaveLength" type="caaml:WaveLengthType" />
+			<element name="albedo" type="caaml:NonNegDoubleTypeWithUncertainty">
+				<annotation>
+					<documentation>Measured Albedo.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
 	<!-- SNOW PACK -->
 	<complexType name="SnowPackCondType" final="#all">
 		<sequence>
