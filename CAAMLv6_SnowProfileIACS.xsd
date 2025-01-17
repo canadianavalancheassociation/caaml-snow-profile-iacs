@@ -659,6 +659,17 @@
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 	</complexType>
+<simpleType name="TempMethodOfMeasType">
+		<union memberTypes="caaml:TempMethodOfMeasEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="TempMethodOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Thermometer"/>
+			<enumeration value="IR thermometer"/>
+			<enumeration value="IR photography"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
 	<!-- EMBEDDED DENSITY PROFILES -->
 	<complexType name="DensityProfileType" final="#all">
 		<sequence>
