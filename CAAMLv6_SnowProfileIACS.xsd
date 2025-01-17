@@ -2224,6 +2224,13 @@
 			</simpleType>
 		</union>
 	</simpleType>
+<complexType name="WaveLengthType" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="gml:UomIdentifier" use="required" fixed="nm"/>
+			</extension>
+		</simpleContent>
+	</complexType>
 	<complexType name="TempType" final="#all">
 		<simpleContent>
 			<extension base="caaml:TempOrNilReasonType">
