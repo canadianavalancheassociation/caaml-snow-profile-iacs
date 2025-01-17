@@ -628,6 +628,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<!-- EMBEDDED TEMPERATURE PROFILE -->
 	<complexType name="TempProfileType" final="#all">
@@ -658,6 +661,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 <simpleType name="TempMethodOfMeasType">
 		<union memberTypes="caaml:TempMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -727,6 +733,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="DensityMethodOfMeasType">
 		<union memberTypes="caaml:DensityMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -790,6 +799,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="LwcMethodOfMeasType">
 		<union memberTypes="caaml:LwcMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -864,6 +876,9 @@
 			</choice>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="SpecSurfAreaMethodOfMeasType">
 		<union memberTypes="caaml:SpecSurfAreaMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -941,6 +956,9 @@
 			</choice>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 		<attribute name="uomWeightHammer" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomWeightTube" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomDropHeight" type="caaml:UomLengthType" use="optional" fixed="cm"/>
@@ -1004,6 +1022,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="StrengthMethodOfMeasType">
 		<union memberTypes="caaml:StrengthMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -1069,6 +1090,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="ImpurityMethodOfMeasType">
 		<union memberTypes="caaml:ImpurityMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -1128,6 +1152,9 @@
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<!-- RUTSCH BLOCK TEST-->
 	<complexType name="RBlockTestType" final="#all">
