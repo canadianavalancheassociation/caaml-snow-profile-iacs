@@ -1183,6 +1183,21 @@
 										<documentation>Thickness of layer probed in cm</documentation>
 									</annotation>
 								</element>
+								<element name="probedVolume" type="caaml:MeasureVolumeType" minOccurs="0">
+									<annotation>
+										<documentation>Volume of probe in cm3</documentation>
+									</annotation>
+								</element>
+								<element name="probedDiameter" type="caaml:MeasureLengthCmType" minOccurs="0">
+									<annotation>
+										<documentation>Diameter of probe in cm</documentation>
+									</annotation>
+								</element>
+								<element name="probedLength" type="caaml:MeasureLengthCmType" minOccurs="0">
+									<annotation>
+										<documentation>Length of probe in m</documentation>
+									</annotation>
+								</element>
 							</sequence>
 						</extension>
 					</complexContent>
