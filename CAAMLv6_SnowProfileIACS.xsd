@@ -219,6 +219,7 @@
 					<documentation>State, province, canton, ... </documentation>
 				</annotation>
 			</element>
+			<element name="solarMask" type="caaml:SolarMaskType" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
@@ -292,6 +293,67 @@
 	<simpleType name="SlopeAngleBaseType">
 		<restriction base="integer">
 			<minInclusive value="0"/>
+			<maxInclusive value="90"/>
+		</restriction>
+	</simpleType>
+	<complexType name="SolarMaskType" final="#all">
+		<sequence>
+			<element name="solarMaskMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="methodOfMeas" type="caaml:SolarMaskMethodOfMeasType"/>
+								<element name="uncertaintyOfMeas" type="caaml:AspectBaseNumType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="Data" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="azimuth" type="caaml:AspectBaseNumType">
+							<annotation>
+								<documentation>Azimuth angle in degrees (0 to 360).</documentation>
+							</annotation>
+						</element>
+						<element name="elevation" type="caaml:ElevationAngleBaseType">
+							<annotation>
+								<documentation>Elevation angle of the solar mask above horizontal line in degrees (0 to 90).</documentation>
+							</annotation>
+						</element>
+					</sequence>
+					<attribute name="uom" type="caaml:UomInclineType" use="required" fixed="deg"/>
+				</complexType>
+			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="SolarMaskMethodOfMeasType">
+		<union memberTypes="caaml:SolarMaskMethodOfMeasEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="SolarMaskMethodOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Theodolite"/>
+			<enumeration value="Manual measurement"/>
+			<enumeration value="From DTM"/>
+			<enumeration value="From DSM"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ElevationAngleBaseType">
+		<restriction base="integer">
+			<minInclusive value="-90"/>
 			<maxInclusive value="90"/>
 		</restriction>
 	</simpleType>
