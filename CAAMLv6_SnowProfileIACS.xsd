@@ -1011,6 +1011,7 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:TempMethodOfMeasType" minOccurs="0" />
 								<element name="uncertaintyOfMeas" type="caaml:SnowTempType" minOccurs="0">
 									<annotation>
@@ -1074,6 +1075,7 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:DensityMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -1160,6 +1162,7 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:LwcMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -1225,6 +1228,7 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:SpecSurfAreaMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -1318,6 +1322,7 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:HardnessMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -1417,6 +1422,7 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
 								<element name="strengthType" type="caaml:StrengthEnumType">
 									<annotation>
 										<documentation>Type of strength</documentation>
@@ -1490,6 +1496,7 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
 								<element name="impurity" type="caaml:ImpurityType">
 									<annotation>
 										<documentation>Type of impurity</documentation>
