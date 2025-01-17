@@ -97,6 +97,16 @@
 					<documentation>Property element for series of stability test results</documentation>
 				</annotation>
 			</element>
+			<element name="otherScalarProfile" type="caaml:OtherScalarProfileType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Property element for other scalar profile independent of stratigraphic profile</documentation>
+				</annotation>
+			</element>
+			<element name="otherVectorialProfile" type="caaml:OtherVectorialProfileType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Property element for other vectorial profile independent of stratigraphic profile</documentation>
+				</annotation>
+			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute name="dir" type="caaml:DirectionType" use="required" fixed="top down"/>
@@ -1550,6 +1560,120 @@
 			<enumeration value="Other"/>
 		</restriction>
 	</simpleType>
+	<!-- EMBEDDED OTHER SCALAR PROFILES -->
+	<complexType name="OtherScalarProfileType" final="#all">
+		<sequence>
+			<element name="otherScalarMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
+								<element name="parameter" type="string">
+									<annotation>
+										<documentation>The parameter to be measured</documentation>
+									</annotation>
+								</element>
+								<element name="methodOfMeas" type="string">
+									<annotation>
+										<documentation>Measurement method description</documentation>
+									</annotation>
+								</element>
+								<element name="uom" type="string">
+									<annotation>
+										<documentation>Measurement method description</documentation>
+									</annotation>
+								</element>
+								<element name="uncertaintyOfMeas" type="caaml:DoubleOrNilReasonType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<sequence>
+								<element name="value" type="caaml:DoubleOrNilReasonTypeWithUncertainty"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!-- EMBEDDED OTHER VECTORIAL PROFILES -->
+	<complexType name="OtherVectorialProfileType" final="#all">
+		<sequence>
+			<element name="otherVectorialMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
+								<element name="parameter" type="string">
+									<annotation>
+										<documentation>The parameter to be measured</documentation>
+									</annotation>
+								</element>
+								<element name="rank" type="integer">
+									<annotation>
+										<documentation>The rank of this parameter (number of values to parse for each data)</documentation>
+									</annotation>
+								</element>
+								<element name="methodOfMeas" type="string">
+									<annotation>
+										<documentation>Measurement method description</documentation>
+									</annotation>
+								</element>
+								<element name="uncertaintyOfMeas" type="caaml:DoubleOrNilReasonType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<sequence>
+								<element name="value" type="gml:doubleList"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
+		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
+	</complexType>
+
 
 	
 	<!--**********************************************************-->
