@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0.4"
-	xmlns:caaml="http://caaml.org/Schemas/SnowProfileIACS/v6.0.4"
-	xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/SnowProfileIACS/v6.0.4">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0.6"
+	xmlns:caaml="http://caaml.org/Schemas/SnowProfileIACS/v6.0.6"
+	xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://caaml.org/Schemas/SnowProfileIACS/v6.0.6">
 	
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/SnowProfileIACS/v6.0.4/CAAMLv6_SnowProfileIACS_GML.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/SnowProfileIACS/v6.0/CAAMLv6_SnowProfileIACS_GML.xsd"/>
 
 	
 	<!--**********************************************************-->
@@ -56,7 +56,7 @@
 					<field xpath="caaml:layerOfConcern"/>
 				</unique>
 			</element>
-			<element name="tempProfile" type="caaml:TempProfileType" minOccurs="0">
+			<element name="tempProfile" type="caaml:TempProfileType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>Property element for temperature profile independent of stratigraphic profile</documentation>
 				</annotation>
@@ -95,6 +95,16 @@
 			<element name="stbTests" type="caaml:StbTestsType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for series of stability test results</documentation>
+				</annotation>
+			</element>
+			<element name="otherScalarProfile" type="caaml:OtherScalarProfileType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Property element for other scalar profile independent of stratigraphic profile</documentation>
+				</annotation>
+			</element>
+			<element name="otherVectorialProfile" type="caaml:OtherVectorialProfileType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Property element for other vectorial profile independent of stratigraphic profile</documentation>
 				</annotation>
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
@@ -219,6 +229,108 @@
 					<documentation>State, province, canton, ... </documentation>
 				</annotation>
 			</element>
+			<element name="solarMask" type="caaml:SolarMaskType" minOccurs="0"/>
+			<element name="obsPointEnvironment" minOccurs="0">
+				<annotation>
+					<documentation>Description of the site environment: soil and surrounding vegetation or forest characteristics</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="bedSurface" type="caaml:BedSurfaceType" minOccurs="0">
+							<annotation>
+								<documentation>The bed surface type</documentation>
+							</annotation>
+						</element>
+						<element name="bedSurfaceComment" type="caaml:CommentType" minOccurs="0">
+							<annotation>
+								<documentation>Free text description of the bed surface</documentation>
+							</annotation>
+						</element>
+						<element name="litterThickness" minOccurs="0">
+							<annotation>
+								<documentation>Litter thickness, in case of the presence of a layer of litter on the soil</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="iceThickness" minOccurs="0">
+							<annotation>
+								<documentation>Ice thickness, in case the seasonal snow lie on a icy surface</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="lowVegetationHeight" minOccurs="0">
+							<annotation>
+								<documentation>Height of low vegetation in case of presence of low vegetation (e.g. grass)</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="lai" minOccurs="0">
+							<annotation>
+								<documentation>Leaf area index, including both low and high vegetation, measured in summer</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomUnitType" use="required" fixed="1"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="forestPresence" type="caaml:ForestPresenceType" minOccurs="0">
+							<annotation>
+								<documentation>Presence (or not) of forest at the observation site</documentation>
+							</annotation>
+						</element>
+						<element name="forestComment" type="caaml:CommentType" minOccurs="0">
+							<annotation>
+								<documentation>Free text description of the bed surface</documentation>
+							</annotation>
+						</element>
+						<element name="skyViewFactor" minOccurs="0">
+							<annotation>
+								<documentation>Sky view factor. The part of the visible sky on an hemisphere centered at the observation point.</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomUnitType" use="required" fixed="1"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="treeHeight" minOccurs="0">
+							<annotation>
+								<documentation>Tree height in case of forest site.</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<extension base="caaml:NonNegDoubleOrNilReasonType">
+										<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
@@ -295,6 +407,102 @@
 			<maxInclusive value="90"/>
 		</restriction>
 	</simpleType>
+	<complexType name="SolarMaskType" final="#all">
+		<sequence>
+			<element name="solarMaskMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="methodOfMeas" type="caaml:SolarMaskMethodOfMeasType"/>
+								<element name="uncertaintyOfMeas" type="caaml:AspectBaseNumType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="Data" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="azimuth" type="caaml:AspectBaseNumType">
+							<annotation>
+								<documentation>Azimuth angle in degrees (0 to 360).</documentation>
+							</annotation>
+						</element>
+						<element name="elevation" type="caaml:ElevationAngleBaseType">
+							<annotation>
+								<documentation>Elevation angle of the solar mask above horizontal line in degrees (0 to 90).</documentation>
+							</annotation>
+						</element>
+					</sequence>
+					<attribute name="uom" type="caaml:UomInclineType" use="required" fixed="deg"/>
+				</complexType>
+			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="SolarMaskMethodOfMeasType">
+		<union memberTypes="caaml:SolarMaskMethodOfMeasEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="SolarMaskMethodOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Theodolite"/>
+			<enumeration value="Manual measurement"/>
+			<enumeration value="From DTM"/>
+			<enumeration value="From DSM"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ElevationAngleBaseType">
+		<restriction base="integer">
+			<minInclusive value="-90"/>
+			<maxInclusive value="90"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="BedSurfaceType">
+		<union memberTypes="caaml:BedSurfaceEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="BedSurfaceEnumType">
+		<restriction base="string">
+			<enumeration value="Sea ice"/>
+			<enumeration value="Glacier"/>
+			<enumeration value="Ice cap"/>
+			<enumeration value="Fresh water ice"/>
+			<enumeration value="Wetlands"/>
+			<enumeration value="Grassland"/>
+			<enumeration value="Shrubs"/>
+			<enumeration value="Rocks"/>
+			<enumeration value="Bare ground"/>
+			<enumeration value="Needle litter"/>
+			<enumeration value="Broadleaf litter"/>
+			<enumeration value="Artificial surface"/>
+			<enumeration value="Mixed"/>
+			<enumeration value="Other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ForestPresenceType">
+		<union memberTypes="caaml:ForestPresenceEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="ForestPresenceEnumType">
+		<restriction base="string">
+			<enumeration value="Open Area"/>
+			<enumeration value="Broadleaf forest"/>
+			<enumeration value="Needle forest"/>
+			<enumeration value="Mixed forest"/>
+			<enumeration value="Shrubs"/>
+			<enumeration value="Other"/>
+		</restriction>
+	</simpleType>
+
 
 	
 	<!--**********************************************************-->
@@ -304,7 +512,7 @@
 	<!-- WEATHER -->
 	<complexType name="WeatherCondType" final="#all">
 		<sequence>
-			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0">
+			<element name="metaData" type="caaml:WeatherCondMetaDataType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for description of weather conditions</documentation>
 				</annotation>
@@ -336,6 +544,24 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+	</complexType>
+	<complexType name="WeatherCondMetaDataType">
+		<complexContent>
+			<extension base="caaml:MetaDataBaseType">
+				<sequence>
+					<element name="airTempMeasurementHeight" type="caaml:MeasureHeightMType" minOccurs="0">
+						<annotation>
+							<documentation>Measurement height (m) for air temperature</documentation>
+						</annotation>
+					</element>
+					<element name="windMeasurementHeight" type="caaml:MeasureHeightMType" minOccurs="0">
+						<annotation>
+							<documentation>Measurement height (m) for wind speed and direction</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
 	</complexType>
 	<simpleType name="PrecipTIType" final="#all">
 		<union memberTypes="gml:NilReasonEnumeration caaml:PrecipTIMetarBaseType"/>
@@ -440,7 +666,21 @@
 			<element name="Components">
 				<complexType>
 					<sequence>
-						<element name="surfRoughness" type="caaml:SurfRoughnessType"/>
+						<element name="surfRoughness" type="caaml:SurfRoughnessType">
+							<annotation>
+								<documentation>Surface Roughness according to Fierz et al., 2009</documentation>
+							</annotation>
+						</element>
+						<element name="surfWindFeatures" type="caaml:SurfWindFeatureType" minOccurs="0">
+							<annotation>
+								<documentation>Surface Wind features. For details, see Filhol and Sturm, 2015 and Kochanski, Anderson, and Tucker, 2019.</documentation>
+							</annotation>
+						</element>
+						<element name="surfMeltRainFeatures" type="caaml:SurfMeltRainFeatureType" minOccurs="0">
+							<annotation>
+								<documentation>Surface Melt Rain features. For details, see Filhol and Sturm, 2015 and Kochanski, Anderson, and Tucker, 2019.</documentation>
+							</annotation>
+						</element>
 						<element name="validAmplitude" minOccurs="0">
 							<annotation>
 								<documentation>Property element for vertical extent of surface feature (amplitude)</documentation>
@@ -494,6 +734,47 @@
 							</complexType>
 						</element>
 						<element name="validAspect" type="caaml:ValidAspectType" minOccurs="0"/>
+						<element name="lapPresence" type="caaml:LapPresenceType">
+							<annotation>
+								<documentation>Presence of light absorbing particles at surface</documentation>
+							</annotation>
+						</element>
+						<element name="surfTemp" minOccurs="0">
+							<annotation>
+								<documentation>Surface Temperature</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="methodOfMeas" type="caaml:SurfTempMethodOfMeasType" />
+									<element name="data" type="caaml:TempType" />
+								</sequence>
+							</complexType>
+						</element>
+						<element name="surfAlbedo" minOccurs="0">
+							<annotation>
+								<documentation>Surface Albedo, either spectral or bulk</documentation>
+							</annotation>
+							<complexType>
+								<choice>
+									<element name="albedo">
+										<complexType>
+											<sequence>
+												<element name="albedoMeasurement" type="caaml:NonNegDoubleOrNilReasonType"/>
+												<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
+											</sequence>
+										</complexType>
+									</element>
+									<element name="spectralAlbedo">
+										<complexType>
+											<sequence>
+												<element name="spectralAlbedoMeasurement" type="caaml:SpectralAlbedoMeasurementType" maxOccurs="unbounded"/>
+												<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
+											</sequence>
+										</complexType>
+									</element>
+								</choice>
+							</complexType>
+						</element>
 					</sequence>
 				</complexType>
 			</element>
@@ -511,6 +792,70 @@
 			<enumeration value="rrd"/>
 		</restriction>
 	</simpleType>
+	<simpleType name="SurfWindFeatureType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:SurfWindFeatureBaseEnumType"/>
+	</simpleType>
+	<simpleType name="SurfWindFeatureBaseEnumType">
+		<restriction base="string">
+			<enumeration value="No observable wind bedforms"/>
+			<enumeration value="Snowdrift around obstacles"/>
+			<enumeration value="Snow ripples"/>
+			<enumeration value="Snow waves"/>
+			<enumeration value="Barchan dunes"/>
+			<enumeration value="Dunes"/>
+			<enumeration value="Loose patches"/>
+			<enumeration value="Pits"/>
+			<enumeration value="Snow steps"/>
+			<enumeration value="Sastrugi"/>
+			<enumeration value="mixed"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SurfMeltRainFeatureType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:SurfMeltRainFeatureBaseEnumType"/>
+	</simpleType>
+	<simpleType name="SurfMeltRainFeatureBaseEnumType">
+		<restriction base="string">
+			<enumeration value="Sun cups"/>
+			<enumeration value="Penitents"/>
+			<enumeration value="Melt or rain furrows"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="LapPresenceType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:LapPresenceBaseEnumType"/>
+	</simpleType>
+	<simpleType name="LapPresenceBaseEnumType">
+		<restriction base="string">
+			<enumeration value="No LAP"/>
+			<enumeration value="Black Carbon"/>
+			<enumeration value="Dust"/>
+			<enumeration value="Mixed"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SurfTempMethodOfMeasType">
+		<union memberTypes="gml:NilReasonEnumeration caaml:SurfTempMethodOfMeasEnumType"/>
+	</simpleType>
+	<simpleType name="SurfTempMethodOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Thermometer"/>
+			<enumeration value="Hemishperic IR"/>
+			<enumeration value="IR thermometer"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<complexType name="SpectralAlbedoMeasurementType">
+		<sequence>
+			<element name="minWaveLength" type="caaml:WaveLengthType" />
+			<element name="maxWaveLength" type="caaml:WaveLengthType" />
+			<element name="albedo" type="caaml:NonNegDoubleTypeWithUncertainty">
+				<annotation>
+					<documentation>Measured Albedo.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
 	<!-- SNOW PACK -->
 	<complexType name="SnowPackCondType" final="#all">
 		<sequence>
@@ -524,6 +869,11 @@
 					<documentation>Property element for height of snowpack or snow depth and snow water equivalent</documentation>
 				</annotation>
 			</element>
+			<element name="hSVariability" type="caaml:SnowHeightPointRegularType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for typical standard deviation of the height of snowpack or snow depth and snow water equivalent in the immediate proximity of the snow pit</documentation>
+				</annotation>
+			</element>
 			<element name="hN24" type="caaml:SnowHeightPointRegularType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for 24 hour height of new snow and snow water equivalent</documentation>
@@ -532,6 +882,16 @@
 			<element name="hIN" type="caaml:SnowHeightPointIrregularType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for irregular intervall height of new snow and snow water equivalent - NEED TO ADD TO CAAML</documentation>
+				</annotation>
+			</element>
+			<element name="snowTransport" type="caaml:SnowTransportType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for identifying whether snow transport was observed at the observation time.</documentation>
+				</annotation>
+			</element>
+			<element name="snowTransportOccurrence24" type="caaml:PercentOrNilReasonType" minOccurs="0">
+				<annotation>
+					<documentation>Property element for percentage of time with snow transport occurrence in the past 24h (for instance recovered from flow capt sensors).</documentation>
 				</annotation>
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
@@ -564,6 +924,17 @@
 			</element>
 		</sequence>
 	</complexType>
+	<simpleType name="SnowTransportType">
+		<union memberTypes="caaml:SnowTransportEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="SnowTransportEnumType">
+		<restriction base="string">
+			<enumeration value="No snow transport"/>
+			<enumeration value="Modified saltation"/>
+			<enumeration value="Drifting snow"/>
+			<enumeration value="Blowing snow"/>
+		</restriction>
+	</simpleType>
 
 
 	<!--**********************************************************-->
@@ -577,6 +948,10 @@
 				<complexType>
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
+							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
@@ -624,6 +999,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<!-- EMBEDDED TEMPERATURE PROFILE -->
 	<complexType name="TempProfileType" final="#all">
@@ -632,6 +1010,21 @@
 				<complexType>
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
+								<element name="methodOfMeas" type="caaml:TempMethodOfMeasType" minOccurs="0" />
+								<element name="uncertaintyOfMeas" type="caaml:SnowTempType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of all measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of all measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
 						</extension>
 					</complexContent>
 				</complexType>
@@ -644,7 +1037,12 @@
 								<element name="snowTemp" type="caaml:SnowTempType"/>
 								<element name="uncertaintyOfMeas" type="caaml:SnowTempType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 							</sequence>
@@ -652,9 +1050,24 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
+	<simpleType name="TempMethodOfMeasType">
+		<union memberTypes="caaml:TempMethodOfMeasEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="TempMethodOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Thermometer"/>
+			<enumeration value="IR thermometer"/>
+			<enumeration value="IR photography"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
 	<!-- EMBEDDED DENSITY PROFILES -->
 	<complexType name="DensityProfileType" final="#all">
 		<sequence>
@@ -663,6 +1076,8 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:DensityMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -670,7 +1085,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureDensityType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probeVolume" type="caaml:MeasureVolumeType" minOccurs="0">
@@ -704,7 +1124,7 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="density" type="caaml:MeasureDensityType"/>
+								<element name="density" type="caaml:MeasureDensityTypeWithUncertainty"/>
 							</sequence>
 						</extension>
 					</complexContent>
@@ -712,6 +1132,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="DensityMethodOfMeasType">
 		<union memberTypes="caaml:DensityMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -721,7 +1144,15 @@
 			<enumeration value="Snow Tube"/>
 			<enumeration value="Snow Cylinder"/>
 			<enumeration value="Snow Cutter"/>
+			<enumeration value="Snow wedge Cutter"/>
+			<enumeration value="other gravimetric measurement method"/>
 			<enumeration value="Denoth Probe"/>
+			<enumeration value="SnowPro Probe"/>
+			<enumeration value="Snow Fork"/>
+			<enumeration value="other dielectric permittivity method"/>
+			<enumeration value="Tomography"/>
+			<enumeration value="SnowMicroPen"/>
+			<enumeration value="Neutron scattering probe"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
@@ -733,6 +1164,8 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:LwcMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -740,7 +1173,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureLwcType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
@@ -759,7 +1197,7 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="lwc" type="caaml:MeasureLwcType"/>
+								<element name="lwc" type="caaml:MeasureLwcTypeWithUncertainty"/>
 							</sequence>
 						</extension>
 					</complexContent>
@@ -767,6 +1205,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="LwcMethodOfMeasType">
 		<union memberTypes="caaml:LwcMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -775,6 +1216,10 @@
 		<restriction base="string">
 			<enumeration value="Denoth Probe"/>
 			<enumeration value="Snow Fork"/>
+			<enumeration value="SnowPro Probe"/>
+			<enumeration value="WISe"/>
+			<enumeration value="other dielectric permittivity method"/>
+			<enumeration value="MRI"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
@@ -786,6 +1231,8 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:SpecSurfAreaMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -793,7 +1240,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureSpecSurfAreaType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
@@ -832,7 +1284,7 @@
 						<complexContent>
 							<extension base="caaml:LayerInProfileBaseType">
 								<sequence>
-									<element name="specSurfArea" type="caaml:MeasureSpecSurfAreaType"/>
+									<element name="specSurfArea" type="caaml:MeasureSpecSurfAreaTypeWithUncertainty"/>
 								</sequence>
 							</extension>
 						</complexContent>
@@ -841,6 +1293,9 @@
 			</choice>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="SpecSurfAreaMethodOfMeasType">
 		<union memberTypes="caaml:SpecSurfAreaMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -848,6 +1303,18 @@
 	<simpleType name="SpecSurfAreaMethodOfMeasEnumType">
 		<restriction base="string">
 			<enumeration value="Ice Cube"/>
+			<enumeration value="IRIS"/>
+			<enumeration value="InfraSnow"/>
+			<enumeration value="DUFFISSS-1310"/>
+			<enumeration value="DUFFISSS-1550"/>
+			<enumeration value="HISSGraS"/>
+			<enumeration value="ASSSAP"/>
+			<enumeration value="other IR integrating sphere"/>
+			<enumeration value="SWIRcam"/>
+			<enumeration value="SnowImager"/>
+			<enumeration value="other NIR method"/>
+			<enumeration value="Tomography"/>
+			<enumeration value="SnowMicroPen"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
@@ -859,6 +1326,8 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
 								<element name="methodOfMeas" type="caaml:HardnessMethodOfMeasType">
 									<annotation>
 										<documentation>Property element for numerical value of mass fraction of impurity (% or ppm)</documentation>
@@ -866,12 +1335,22 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasureForceType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="surfOfIndentation" type="caaml:MeasureAreaType" minOccurs="0">
 									<annotation>
 										<documentation>Surface of indentation in m2</documentation>
+									</annotation>
+								</element>
+								<element name="penetrationSpeed" type="caaml:MeasureSpeedType" minOccurs="0">
+									<annotation>
+										<documentation>Speed of the penetration for hardness measurement m.s-1 (especially for automated measurements such as SnowMicroPen or similar)</documentation>
 									</annotation>
 								</element>
 							</sequence>
@@ -918,6 +1397,9 @@
 			</choice>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 		<attribute name="uomWeightHammer" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomWeightTube" type="caaml:UomWeightType" use="optional" fixed="kg"/>
 		<attribute name="uomDropHeight" type="caaml:UomLengthType" use="optional" fixed="cm"/>
@@ -930,6 +1412,10 @@
 			<enumeration value="SnowMicroPen"/>
 			<enumeration value="Ram Sonde"/>
 			<enumeration value="Push-Pull Gauge"/>
+			<enumeration value="Avatech SP1"/>
+			<enumeration value="Avatech SP2"/>
+			<enumeration value="Scope propagation labs"/>
+			<enumeration value="other automatic penetrometer"/>
 			<enumeration value="other"/>
 		</restriction>
 	</simpleType>
@@ -941,6 +1427,8 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
 								<element name="strengthType" type="caaml:StrengthEnumType">
 									<annotation>
 										<documentation>Type of strength</documentation>
@@ -953,7 +1441,12 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:MeasurePressureType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedArea" type="caaml:MeasureAreaType" minOccurs="0">
@@ -972,7 +1465,7 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<sequence>
-								<element name="strengthValue" type="caaml:MeasurePressureType"/>
+								<element name="strengthValue" type="caaml:MeasurePressureTypeWithUncertainty"/>
 								<element name="fractureCharacter" type="caaml:FractureCharacterType" minOccurs="0"/>
 							</sequence>
 						</extension>
@@ -981,6 +1474,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="StrengthMethodOfMeasType">
 		<union memberTypes="caaml:StrengthMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -1006,6 +1502,8 @@
 					<complexContent>
 						<extension base="caaml:MetaDataBaseType">
 							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
 								<element name="impurity" type="caaml:ImpurityType">
 									<annotation>
 										<documentation>Type of impurity</documentation>
@@ -1018,12 +1516,32 @@
 								</element>
 								<element name="uncertaintyOfMeas" type="caaml:NonNegMeasureType" minOccurs="0">
 									<annotation>
-										<documentation>Uncertainty of individual measurements</documentation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
 									</annotation>
 								</element>
 								<element name="probedThickness" type="caaml:MeasureLengthCmType" minOccurs="0">
 									<annotation>
 										<documentation>Thickness of layer probed in cm</documentation>
+									</annotation>
+								</element>
+								<element name="probedVolume" type="caaml:MeasureVolumeType" minOccurs="0">
+									<annotation>
+										<documentation>Volume of probe in cm3</documentation>
+									</annotation>
+								</element>
+								<element name="probedDiameter" type="caaml:MeasureLengthCmType" minOccurs="0">
+									<annotation>
+										<documentation>Diameter of probe in cm</documentation>
+									</annotation>
+								</element>
+								<element name="probedLength" type="caaml:MeasureLengthCmType" minOccurs="0">
+									<annotation>
+										<documentation>Length of probe in m</documentation>
 									</annotation>
 								</element>
 							</sequence>
@@ -1037,8 +1555,8 @@
 					<complexContent>
 						<extension base="caaml:LayerInProfileBaseType">
 							<choice>
-								<element name="massFraction" type="caaml:NonNegMeasureType"/>
-								<element name="volumeFraction" type="caaml:NonNegMeasureType"/>
+								<element name="massFraction" type="caaml:NonNegMeasureTypeWithUncertainty"/>
+								<element name="volumeFraction" type="caaml:NonNegMeasureTypeWithUncertainty"/>
 							</choice>
 						</extension>
 					</complexContent>
@@ -1046,6 +1564,9 @@
 			</element>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<simpleType name="ImpurityMethodOfMeasType">
 		<union memberTypes="caaml:ImpurityMethodOfMeasEnumType gml:NilReasonEnumeration"/>
@@ -1063,8 +1584,123 @@
 			<enumeration value="Black Carbon"/>
 			<enumeration value="Dust"/>
 			<enumeration value="Isotopes"/>
+			<enumeration value="Other"/>
 		</restriction>
 	</simpleType>
+	<!-- EMBEDDED OTHER SCALAR PROFILES -->
+	<complexType name="OtherScalarProfileType" final="#all">
+		<sequence>
+			<element name="otherScalarMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
+								<element name="parameter" type="string">
+									<annotation>
+										<documentation>The parameter to be measured</documentation>
+									</annotation>
+								</element>
+								<element name="methodOfMeas" type="string">
+									<annotation>
+										<documentation>Measurement method description</documentation>
+									</annotation>
+								</element>
+								<element name="uom" type="string">
+									<annotation>
+										<documentation>Measurement method description</documentation>
+									</annotation>
+								</element>
+								<element name="uncertaintyOfMeas" type="caaml:DoubleOrNilReasonType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<sequence>
+								<element name="value" type="caaml:DoubleOrNilReasonTypeWithUncertainty"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!-- EMBEDDED OTHER VECTORIAL PROFILES -->
+	<complexType name="OtherVectorialProfileType" final="#all">
+		<sequence>
+			<element name="otherVectorialMetaData">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:MetaDataBaseType">
+							<sequence>
+								<element name="recordTime" type="caaml:ValidTimeType" minOccurs="0" />
+								<element name="hS" type="caaml:SnowHeightPointRegularType" minOccurs="0" />
+								<element name="parameter" type="string">
+									<annotation>
+										<documentation>The parameter to be measured</documentation>
+									</annotation>
+								</element>
+								<element name="rank" type="integer">
+									<annotation>
+										<documentation>The rank of this parameter (number of values to parse for each data)</documentation>
+									</annotation>
+								</element>
+								<element name="methodOfMeas" type="string">
+									<annotation>
+										<documentation>Measurement method description</documentation>
+									</annotation>
+								</element>
+								<element name="uncertaintyOfMeas" type="caaml:DoubleOrNilReasonType" minOccurs="0">
+									<annotation>
+										<documentation>Uncertainty of individual measurements (standard deviation or 68 percent confidence interval)</documentation>
+									</annotation>
+								</element>
+								<element name="qualityOfMeas" type="caaml:QualityOfMeasType" minOccurs="0">
+									<annotation>
+										<documentation>Qualitative uncertainty of individual measurements</documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="profileNr" type="caaml:NrBaseType" minOccurs="0"/>
+			<element name="Layer" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="caaml:LayerInProfileBaseType">
+							<sequence>
+								<element name="value" type="gml:doubleList"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element ref="caaml:customData" minOccurs="0"/>
+		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
+	</complexType>
+
 
 	
 	<!--**********************************************************-->
@@ -1103,8 +1739,12 @@
 	<complexType name="AbstractStbTestType" abstract="true">
 		<sequence>
 			<element name="metaData" type="caaml:MetaDataBaseType" minOccurs="0"/>
+			<element name="testNr" type="caaml:NrBaseType" minOccurs="0"/>
 			<element ref="caaml:customData" minOccurs="0"/>
 		</sequence>
+		<attribute name="id" type="ID" />
+		<attribute name="relatedProfiles" type="IDREFS" />
+		<attribute name="name" type="string" />
 	</complexType>
 	<!-- RUTSCH BLOCK TEST-->
 	<complexType name="RBlockTestType" final="#all">
@@ -1678,6 +2318,15 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+	<complexType name="NonNegMeasureTypeWithUncertainty">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="gml:UomIdentifier" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<simpleType name="NonNegDoubleOrNilReasonType">
 		<union memberTypes="gml:NilReasonEnumeration">
 			<simpleType>
@@ -1687,9 +2336,25 @@
 			</simpleType>
 		</union>
 	</simpleType>
+	<complexType name="NonNegDoubleTypeWithUncertainty">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<simpleType name="DoubleOrNilReasonType">
 		<union memberTypes="gml:NilReasonEnumeration double"/>
 	</simpleType>
+	<complexType name="DoubleOrNilReasonTypeWithUncertainty">
+		<simpleContent>
+			<extension base="caaml:DoubleOrNilReasonType">
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<simpleType name="NonNegIntOrNilReasonType">
 		<union memberTypes="gml:NilReasonEnumeration">
 			<simpleType>
@@ -1715,6 +2380,13 @@
 			</simpleType>
 		</union>
 	</simpleType>
+	<complexType name="WaveLengthType" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="gml:UomIdentifier" use="required" fixed="nm"/>
+			</extension>
+		</simpleContent>
+	</complexType>
 	<complexType name="TempType" final="#all">
 		<simpleContent>
 			<extension base="caaml:TempOrNilReasonType">
@@ -1791,6 +2463,15 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+	<complexType name="MeasureSpecSurfAreaTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomSpecSurfAreaType" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<complexType name="MeasureDensityType" final="#all">
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
@@ -1798,10 +2479,28 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+	<complexType name="MeasureDensityTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomDensityType" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
 	<complexType name="MeasureLwcType" final="#all">
 		<simpleContent>
 			<extension base="caaml:PercentOrNilReasonType">
 				<attribute name="uom" type="caaml:UomLwcType" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="MeasureLwcTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:PercentOrNilReasonType">
+				<attribute name="uom" type="caaml:UomLwcType" use="required"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -1816,6 +2515,29 @@
 		<simpleContent>
 			<extension base="caaml:NonNegDoubleOrNilReasonType">
 				<attribute name="uom" type="caaml:UomPressureType" use="required" fixed="Nm-2"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="MeasurePressureTypeWithUncertainty" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomPressureType" use="required" fixed="Nm-2"/>
+				<attribute name="uncertainty" type="caaml:NonNegDoubleOrNilReasonType" />
+				<attribute name="quality" type="caaml:QualityOfMeasType" />
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="MeasureHeightMType" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomLengthType" use="required" fixed="m"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="MeasureSpeedType" final="#all">
+		<simpleContent>
+			<extension base="caaml:NonNegDoubleOrNilReasonType">
+				<attribute name="uom" type="caaml:UomSpdType" use="required" fixed="ms-1"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -1912,5 +2634,24 @@
 			<enumeration value=""/>
 		</restriction>
 	</simpleType>
+	<simpleType name="UomSpdType" final="#all">
+		<restriction base="string">
+			<enumeration value="ms-1"/>
+			<enumeration value=""/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="QualityOfMeasType">
+		<union memberTypes="caaml:QualityOfMeasEnumType gml:NilReasonEnumeration"/>
+	</simpleType>
+	<simpleType name="QualityOfMeasEnumType">
+		<restriction base="string">
+			<enumeration value="Good"/>
+			<enumeration value="Uncertain"/>
+			<enumeration value="Low"/>
+			<enumeration value="Bad"/>
+		</restriction>
+	</simpleType>
+
 
 </schema>
